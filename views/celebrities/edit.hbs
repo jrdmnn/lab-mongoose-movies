@@ -1,0 +1,18 @@
+<h2>Edit celebrity in database💥</h2>
+
+{{#with celebrity}}
+<form action="/celebrities/{{_id}}" method="POST">
+    <label for="name">Name: </label>
+    <input type="text" name="name" id="name" value="{{name}}"> 
+
+    <label for="occupation">Occupation: </label>
+    <input type="text" name="occupation" id="occupation" value="{{occupation}}"> 
+
+    <label for="catchPhrase">CatchPhrase: </label>
+    <input type="text" name="catchPhrase" id="catchPhrase" value="{{catchPhrase}}"> 
+
+    <button type="submit">Update celebrity</button>
+</form>
+
+<a href="/celebrities">No update needed? Click to go back to overview...</a>
+{{/with}}
