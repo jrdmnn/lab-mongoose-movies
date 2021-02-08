@@ -1,6 +1,7 @@
-<h2>celebrity detail</h2>
-{{#each body}}
-  <p>{{this.name}}</p>
-  <p>{{this.occupation}}</p>
-  <p>{{this.catchPhras}}</p>
-{{/each}}
+<h2>Celebrity Detail</h2>
+{{#with body}}
+  <p>Name: {{this.name}}</p>
+  <p>Occupation: {{this.occupation}}</p>
+  <p>Catch Phrase: {{this.catchPhras}}</p>
+{{/with}}
+<a href="/celebrities">Back</a>
