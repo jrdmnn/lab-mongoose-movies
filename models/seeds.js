@@ -1,7 +1,7 @@
 // I read on the student portal this should go on bin but on the portal was used the Irongeneraton. So I will create this here for now
 
 const mongoose = require('mongoose');
-const Celebrity = require('./models/Celebrity');
+const Celebrity = require('./celebrity');
  
 mongoose.connect('mongodb://localhost/celebrity', {
   useCreateIndex: true,
