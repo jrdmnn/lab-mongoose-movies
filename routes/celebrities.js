@@ -21,4 +21,27 @@ router.get('/celebrities/:id', (req, res, next) => {
   })
 })
 
+router.get('/celebrities/new', (req, res, next) => {
+  res.render('celebrities/new');
+})
+
+router.post('/celebrities', (req, res) => {
+  //console.log(req.body);
+  const { name, occupation, catchPhrase } = req.body; 
+
+  const newCeleb = new Celebrity({
+    name: name,
+    occupation: occupation,
+    catchPhrase: catchPhrase
+  })
+
+  newCeleb.save().then(celebrity => {
+    res.redirect("/celebrities");
+  }).catch(err => {
+    console.log('Error while saving a new celebrity: ', err);
+    res.render('celebrities/new');
+  })
+
+})
+
 module.exports = router;
