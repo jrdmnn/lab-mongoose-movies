@@ -26,7 +26,6 @@ router.get('/celebrities/new', (req, res, next) => {
 })
 
 router.post('/celebrities', (req, res) => {
-  //console.log(req.body);
   const { name, occupation, catchPhrase } = req.body; 
 
   const newCeleb = new Celebrity({
@@ -41,7 +40,23 @@ router.post('/celebrities', (req, res) => {
     console.log('Error while saving a new celebrity: ', err);
     res.render('celebrities/new');
   })
-
 })
+
+router.post('/celebrities/:id/delete', (req, res, next) => {
+  Celebrity.findByIdAndDelete(req.params.id)
+    .then(() => {
+      res.redirect('/celebrities')
+    })
+    .catch(err => {
+      console.log(err);
+      next()
+    })
+})
+
+
+
+
+
+
 
 module.exports = router;
