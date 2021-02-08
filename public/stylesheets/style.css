@@ -1,11 +1,37 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+    padding: 50px;
+    font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
+}
 
 a {
-  color: #00b7ff; }
+    color: #00b7ff;
+    text-decoration: none;
+}
 
 h1 {
-  color: 15px; }
+    color: 15px;
+}
 
 /*# sourceMappingURL=style.css.map */
+
+#form {
+    width: 70%;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+input {
+    line-height: 2rem;
+}
+button {
+    width: 30%;
+    background-color: aliceblue;
+}
+#delete-btn {
+    width: 10%;
+    margin: 0;
+    background-color: transparent;
+    text-decoration: none;
+    cursor: pointer;
+}
