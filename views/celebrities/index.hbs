@@ -2,7 +2,10 @@
 {{#each body}}
   <a href="/celebrities/{{this._id}}"><p>{{this.name}}</p></a>
   <form action='/celebrities/{{this._id}}/delete' method="POST">
-  <button type="submit">delete</button>
-</form>
+    <button type="submit">delete</button>
+  </form>
+  <form action='/celebrities/{{this._id}}/edit' method="GET">
+    <button type="submit">edit</button>
+  </form>
 {{/each}}
 <a href="/new"> <p>Add Celebrity</p> </a>
