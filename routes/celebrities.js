@@ -19,12 +19,12 @@ router.get('/celebrities/:id', (req, res, next) => {
   })
 })
 
-router.get('/celebrities/new', (req, res, next) => {
-  res.render('celebrities/new')
+router.get('/new', (req, res, next) => {
+  res.render('celebrities/new');
+})
 
 
 router.post('/celebrities', (req, res) => {
-  console.log(req.body);
   const name = req.body.name;
   const occupation = req.body.occupation;
   const catchPhras = req.body.catchPhras;
@@ -34,10 +34,12 @@ router.post('/celebrities', (req, res) => {
     occupation: occupation,
     catchPhras: catchPhras
   })
-  .save()
-  .then(book => {
-    res.redirect(`/books/${book._id}`)
+  .then(() => {
+    res.redirect("celebrities");
   })
+  .catch(() => {
+    res.render("celebrities/new");
+  });
 })
-})
+
 module.exports = router;
