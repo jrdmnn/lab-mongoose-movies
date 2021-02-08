@@ -4,25 +4,23 @@ const Celebrity = require('../models/Celebrity');
 // Find celebrities
 router.get('/celebrities', (req, res, next) => {
     Celebrity.find()
-        .then((celebs) => {
-            console.log('celebrities', celebs);
-            res.render('celebrities/index', { celebList: celebs });
+        .then((resp) => {
+            console.log('celebrities', resp);
+            res.render('celebrities/index', { resp });
         })
         .catch((err) => {
-            console.log(err);
-            next();
+            next(err);
         });
 });
 
 // See celebrity details
 router.get('/celebrities/:id', (req, res, next) => {
     Celebrity.findById(req.params.id)
-        .then((celeb) => {
-            res.render('celebrities/show', { celeb });
+        .then((resp) => {
+            res.render('celebrities/show', { resp });
         })
         .catch((err) => {
-            console.log(err);
-            next();
+            next(err);
         });
 });
 
@@ -34,12 +32,11 @@ router.get('/celebrities/new', (req, res) => {
 // Update celebrity
 router.get('/celebrities/:id/edit', (req, res, next) => {
     Celebrity.findById(req.params.id)
-        .then((celeb) => {
-            res.render('celebrities/edit', { celeb });
+        .then((resp) => {
+            res.render('celebrities/edit', { resp });
         })
         .catch((err) => {
-            console.log(err);
-            next();
+            next(err);
         });
 });
 
@@ -50,12 +47,11 @@ router.post('/celebrities/:id', (req, res, next) => {
         occupation,
         catchPhrase,
     })
-        .then((celeb) => {
+        .then(() => {
             res.redirect('/celebrities');
         })
         .catch((err) => {
-            console.log(err);
-            next();
+            next(err);
         });
 });
 
@@ -63,14 +59,13 @@ router.post('/celebrities/:id', (req, res, next) => {
 router.post('/celebrities', (req, res) => {
     preventDefault();
     const { name, occupation, catchPhrase } = req.body;
-    console.log('req.body', req.body);
     Celebrity.create({
         name,
         occupation,
         catchPhrase,
     })
-        .then((celeb) => {
-            console.log('This celebrity was added', celeb);
+        .then((resp) => {
+            console.log('This celebrity was added', resp);
             res.redirect(`/celebrities`);
         })
         .catch((err) => {
@@ -81,15 +76,13 @@ router.post('/celebrities', (req, res) => {
 
 // Remove celebrity
 router.post('/celebrities/:id/delete', (req, res, next) => {
-    console.log('req.params.id', req.params.id);
     Celebrity.findByIdAndRemove(req.params.id)
-        .then((celeb) => {
-            console.log('This celebrity was removed', celeb);
+        .then((resp) => {
+            console.log('This celebrity was removed', resp);
             res.redirect(`/celebrities`);
         })
         .catch((err) => {
-            console.log(err);
-            next();
+            next(err);
         });
 });
 

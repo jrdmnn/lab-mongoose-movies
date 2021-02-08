@@ -1,0 +1,12 @@
+
+{{#each resp}}
+    
+     <h4><a href="/movies/{{_id}}">{{title}}</a></h4>
+     <h6><a href="/movies/{{_id}}">{{genre}}</a></h6>
+     <h6><a href="/movies/{{_id}}">{{plot}}</a></h6>
+
+     {{!-- <form action="/movies/{{_id}}/delete" method="POST">
+      <button type="submit" id="delete-btn">Delete</button>
+     </form> --}}
+ 
+{{/each}}
