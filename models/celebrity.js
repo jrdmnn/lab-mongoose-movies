@@ -8,6 +8,6 @@ const celebritySchema = new Schema({
   catchPhrase: String,
 });
 
-const User = model("User", userSchema);
+const Celebrity = mongoose.model('Celebrity', celebritySchema);
 
-module.exports = User;
+module.exports = Celebrity;
