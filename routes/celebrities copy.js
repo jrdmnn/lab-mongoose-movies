@@ -3,7 +3,7 @@ const Celebrity = require('../models/Celebrity');
 
 router.get('/celebrities', (req, res) => {
   Celebrity.find()
-    .then(celebrities => res.render('celebrities/index', {celebrities}))
+    .then(celebrities => res.render('celebrities', {celebrities}))
     .catch(error => console.log(error));
 
 });
@@ -16,7 +16,7 @@ router.post('/celebrities', (req, res) => {
 });
 
 router.get('/celebrities/new', (req, res) => {
-  res.render('celebrities/new', {});
+  res.render('newCelebrity', {});
 });
 
 router.post('/celebrities/:id/delete', (req, res) => {
@@ -27,13 +27,13 @@ router.post('/celebrities/:id/delete', (req, res) => {
 
 router.get('/celebrities/:id/edit', (req, res) => {
   Celebrity.findById(req.params.id)
-    .then(celebrity => res.render('celebrities/edit', {celebrity}))
+    .then(celebrity => res.render('editCelebrity', {celebrity}))
     .catch(error => console.log(error));
 });
 
 router.get('/celebrities/:id', (req, res) => {
   Celebrity.findById(req.params.id)
-    .then(celebrity => res.render('celebrities/show', {celebrity}))
+    .then(celebrity => res.render('showCelebrity', {celebrity}))
     .catch(error => console.log(error));
 });
 

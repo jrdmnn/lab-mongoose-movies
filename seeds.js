@@ -25,6 +25,7 @@ const celebrities = [
 
 Celebrity.insertMany(celebrities)
   .then(celebrities => {
-    console.log(`Success! Added ${celebrities.length} celebrities to the database.`)
+    console.log(`Success! Added ${celebrities.length} celebrities to the database.`);
+    
   })
   .catch(error => console.log(error));
