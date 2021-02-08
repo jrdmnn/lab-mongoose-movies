@@ -43,14 +43,36 @@ router.post('/celebrities', (req, res) => {
 })
 
 router.post('/celebrities/:id/delete', (req, res, next) => {
-  Celebrity.findByIdAndDelete(req.params.id)
-    .then(() => {
+  Celebrity.findByIdAndDelete(req.params.id).then(() => {
       res.redirect('/celebrities')
     })
     .catch(err => {
       console.log(err);
-      next()
+      next();
     })
+})
+
+router.get('/celebrities/:id/edit', (req, res, next) => {
+  Celebrity.findById(req.params.id).then(celebrityfromDB => {
+    // console.log(celebrityfromDB);
+    res.render('celebrities/edit', {celebrity: celebrityfromDB}) 
+  }).catch(err => {
+    console.log('Error while getting a celebrity by ID: ', err);
+    next();
+  })
+})
+
+router.post('/celebrities/:id', (req, res, next) => {
+  //use model update
+  const { name, occupation, catchPhrase } = req.body;
+  Celebrity.updateOne({_id: req.params.id}, {name: name, occupation: occupation, catchPhrase: catchPhrase})
+  .then(q => {
+    console.log("Number of elements modified: ", q.n);
+    res.redirect('/celebrities')
+  }).catch(err => {
+    console.log('Error while updating a celebrity: ', err);
+    next();
+  })
 })
 
 
