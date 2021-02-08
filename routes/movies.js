@@ -13,3 +13,5 @@ router.get('/movies', (req, res, next) => {
             next();
         });
 });
+
+module.exports = router;

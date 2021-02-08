@@ -5,14 +5,21 @@ const movieSchema = new Schema({
         type: String,
         required: true,
     },
-    genre: {
-        type: String,
-        enum: ['comedy', 'drama', 'action', 'horror', 'other'],
-        required: true,
-    },
+    // genre: {
+    //     type: String,
+    //     enum: ['comedy', 'drama', 'action', 'horror', 'other'],
+    //     required: true,
+    // },
     plot: {
         type: String,
     },
+    director: {
+        type: String,
+    },
+    year: {
+        type: String,
+    },
+
     cast: {},
 });
 

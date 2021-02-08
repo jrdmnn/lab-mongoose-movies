@@ -1,9 +1,11 @@
 
 {{#each resp}}
-    
-     <h4><a href="/movies/{{_id}}">{{title}}</a></h4>
-     <h6><a href="/movies/{{_id}}">{{genre}}</a></h6>
-     <h6><a href="/movies/{{_id}}">{{plot}}</a></h6>
+    <div class="result-card">
+     <h3><a href="/movies/{{_id}}">{{title}}</a><small> &nbsp;{{year}}</small></h3>
+     <p>{{genre}}</p>
+     <p>{{plot}}</p>
+    </div>
+
 
      {{!-- <form action="/movies/{{_id}}/delete" method="POST">
       <button type="submit" id="delete-btn">Delete</button>
