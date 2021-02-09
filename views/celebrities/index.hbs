@@ -1,8 +1,8 @@
 <h2>Index celebrities</h2>
 {{#each celibritiesList}}
 <a href="/celebrities/{{this._id}}">{{name}}</a>
-<form action="/celebrities/{{this._id}}/delete" method="POST"> 
-  <button>Delete</button>
+<form action="/celebrities/{{this._id}}/delete" method="POST">
+  <button type="submit">Delete</button>
 </form>
 {{/each}}
 

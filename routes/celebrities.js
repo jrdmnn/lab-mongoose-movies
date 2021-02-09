@@ -13,21 +13,6 @@ router.get("/celebrities", (req, res, next) => {
   })
 });
 
-//GET to a specific celebrity 
-router.get("/celebrities/:id", (req,res, next) => {
-  const celebrityId = req.params.id; 
-  Celebrity.findById(celebrityId).then(firstCelebrities => {
-    res.render('celebrities/show', {celebrityDetails : firstCelebrities});
-  }).catch(err => {
-    next(err);
-  })
-});
-
-//Locate the /celebrities/new GET route in routes/celebrities
-router.get('/celebrities/new', (req, res) => {
-  res.render('celebrities/new');
-})
-
 //Locate the /celebrities post route
 router.post('/celebrities', (req,res) => { 
   const {name, occupation, catchPhrase} = req.body; 
@@ -40,20 +25,49 @@ router.post('/celebrities', (req,res) => {
       console.log('this celebrities was just created', celebrity); 
       res.redirect(`/celebrities/${celebrity._id}`)
     })
-   // .catch(err=> res.redirect('/celebrities/new'));
+    //.catch(err=> res.redirect('/celebrities/new'));
 });
 
-//Deleting Celebrity
-router.get('/celebrities/delete/:id', (req, res) => {
+
+
+//Locate the /celebrities/new GET route in routes/celebrities
+router.get('/celebrities/new', (req, res) => {
+  console.log('new routes works')
+  res.render('celebrities/new');
+})
+
+
+//GET to a specific celebrity 
+router.get("/celebrities/:id", (req,res, next) => {
   const celebrityId = req.params.id; 
+  Celebrity.findById(celebrityId).then(firstCelebrities => {
+    res.render('celebrities/show', {celebrityDetails : firstCelebrities});
+  }).catch(err => {
+    next(err);
+  })
+});
+
+
+//Deleting Celebrity
+router.post('/celebrities/:id/delete', (req, res,next) => {
+  const celebrityId = req.params.id; 
+  console.log('HEEEEEEERE', celebrityId)
   Celebrity.findByIdAndDelete(celebrityId)
     .then(()=> {
+      console.log('DELETEDDDDDDD')
       res.redirect('/celebrities')
     })
     .catch(err => {
-      console.log(err);
+      next(err);
     })
 })
+
+
+
+
+
+
+
 
 
 module.exports = router 
