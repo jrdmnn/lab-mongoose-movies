@@ -7,6 +7,7 @@ const Celebrity = require('../models/Celebrity.js');
 router.get('/movies', (req, res) => {
   console.log('router movies');
   Movie.find()
+    .populate('cast')
     .then(allMovies => {
       res.render('movies/index', { movies: allMovies })
     })
@@ -15,20 +16,28 @@ router.get('/movies', (req, res) => {
     })
 })
 
-// Access ass movie form
+
+// Access add movie form
 router.get('/movies/new', (req, res) => {
-  res.render('movies/new')
+  Celebrity.find()
+    .then(celebrityDb => {
+      res.render('movies/new', {celebrities: celebrityDb})
+    })
+    .catch(err => {
+      console.log(err);
+    })
 })
 
 
 // Add movie to db
 router.post('/movies', (req, res) => {
   const { title, genre, plot, cast } = req.body;
+  console.log({ title, genre, plot, cast });
 
   Movie.create({ title, genre, plot, cast })
     .then(movie => {
       console.log(movie, 'was successfully added.');
-      res.redirect(`/movies/${movie._id}`)
+      res.redirect(`/movies`)
     })
     .catch(err => {
       console.log(err);
