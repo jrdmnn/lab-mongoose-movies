@@ -112,11 +112,22 @@ let populatedMovies = [];
 router.get('/movies', (req, res, next) => {
 
   Movie.find().populate('cast').then(moviesFromDB => {
-        console.log("My array of populated movies: ", moviesFromDB[0].cast);
+        //console.log("My array of populated movies: ", moviesFromDB[0].cast);
         res.render('movies/index', { moviesList: moviesFromDB })
       }).catch(err => {
         console.log('Error while populating the movies: ', err);
       })
+})
+
+router.get('/movies/:id/edit', (req, res, next) => {
+  Movie.findById(req.params.id).populate('cast').then(MoviefromDB => {
+    console.log(MoviefromDB);
+    
+    res.render('movies/edit', {movie: MoviefromDB}) 
+  }).catch(err => {
+    console.log('Error while getting a movie by ID: ', err);
+    next();
+  })
 })
 
 module.exports = router;
