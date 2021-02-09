@@ -1,7 +1,7 @@
 document.addEventListener(
   "DOMContentLoaded",
   () => {
-    console.log("lab-mongoose-movies JS imported successfully!");
+    console.log("ironhack-boiler-plate JS imported successfully!");
   },
   false
 );

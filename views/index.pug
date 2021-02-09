@@ -1,0 +1,31 @@
+h1 Celebrities
+ul 
+  li 
+    a(href=`/celebrities/`) All Celebrities
+  li
+    a(href=`/celebrities/new`) Add new Celebrity
+  li
+    a(href=`/movies`) All Movies
+  li
+    a(href=`/movies/new`) Add new Movie
+
+  h1 All Celebrities
+  ul
+    each val in celebrities
+      li           
+        a(href=`/celebrities/${val.id}`)= `name: ${val.name} occupation: ${val.name} catchPhrase: ${val.name}`
+
+      form(action=`/celebrities/${val.id}/delete` method="POST") 
+        button(type="submit") delete
+        
+      form(action=`/celebrities/${val.id}/edit` method="GET") 
+        button(type="submit") edit
+
+
+  h1 All Movies
+  ul
+    each val in movies
+      li= `title: ${val.title} genre: ${val.genre} plot: ${val.plot}`
+        
+      form(action=`/movies/${val.id}/edit` method="GET") 
+        button(type="submit") edit

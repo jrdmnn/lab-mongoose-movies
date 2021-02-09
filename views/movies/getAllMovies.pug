@@ -1,0 +1,12 @@
+h1 All Movies
+a(href="/") go back
+ul
+  each val in movies
+    h3= `title: ${val.title}`
+    p= `genre: ${val.genre}`
+    p= `plot: ${val.plot}`
+    p cast:
+    ul
+      each celebritiy in val.cast
+        li= `${celebritiy.name}`
+

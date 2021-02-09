@@ -1,0 +1,15 @@
+h2 Add new Movie
+each val in celebrities
+  h1 #{val.name}
+form(action="/movies" method="POST") 
+  input(type="text" name="title" placeholder="title")
+  select(name="cast" multiple)
+    each val in celebrities
+      option(value=val.name)
+        | #{val.name}
+  input(type="text" name="genre" placeholder="genre")
+  input(type="text" name="plot" placeholder="plot")
+
+  button(type="submit") Submit
+  
+a(href="/") go back
