@@ -12,22 +12,22 @@ mongoose.connect(`mongodb://localhost/${DB_NAME}`, {
 const celebrities = [
   {
     name: 'Matthew McConaughey',
-    ocupation: 'Actor',
+    occupation: 'Actor',
     catchPhrase: 'Alright, Alright, Alright'
   },
   {
     name: 'Sheldon Cooper',
-    ocupation: 'Actor',
+    occupation: 'Actor',
     catchPhrase: 'Bazinga!'
   },
   {
     name: 'Heidi Klum',
-    ocupation: 'Model/Presenter',
+    occupation: 'Model/Presenter',
     catchPhrase: 'Auf wiedersehen!'
   },
   {
     name: 'Oprah Winfrey',
-    ocupation: 'Talk Show Host',
+    occupation: 'Talk Show Host',
     catchPhrase: 'Aha Moment!'
   },
 
