@@ -13,6 +13,7 @@
     "hbs": "^4.1.1",
     "mongoose": "^5.11.15",
     "morgan": "^1.10.0",
+    "node": "^15.8.0",
     "serve-favicon": "^2.5.0"
   },
   "devDependencies": {

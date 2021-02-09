@@ -1,0 +1,20 @@
+<h2>Movies Overview 🥸</h2>
+
+{{#each allMovies}}
+
+  <p>{{this.title}}</p>
+  <p>{{this.plot}}</p>
+  <p>{{this.genre}}</p>
+
+  <ul>
+    {{#each this.cast}}
+        <li>{{name}}</li>
+    {{/each}}
+    </ul>
+
+    <a href="/movies/{{_id}}/edit">Edit the celebrity</a> 
+  
+{{/each}}
+
+
+
