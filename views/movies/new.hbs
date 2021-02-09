@@ -20,7 +20,7 @@
       <label for="cast">Cast</label>
       <select name="cast" id="cast">
           {{#each cel}}
-                  <option value="{{this._id}}">{{this.name}}&nbsp;{{this.lastName}}</option>
+                  <option value="{{this._id}}" selected>{{this.name}} {{this.lastName}}</option>
           {{/each}}
       </select>
        <button type="submit" >Add movie</button>

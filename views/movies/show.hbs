@@ -1,0 +1,16 @@
+<h2>Movie Datails</h2>
+
+    <div class="result-card highlight">
+        {{#with movie}}
+
+            <h4>{{title}}</h4>
+            <p>Director: {{director}}</p>
+            <p>Year: {{year}}</p>
+            <p>Genre: {{genre}}</p>
+            <p>Plot: {{plot}}</p>
+            <p>Cast: [{{cast}}]</p>
+
+            <a href="/movies/{{_id}}/edit">Edit</a>
+
+        {{/with}}
+    </div>

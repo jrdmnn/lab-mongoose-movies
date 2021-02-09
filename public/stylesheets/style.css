@@ -80,7 +80,7 @@ input {
 }
 .result-card.highlight {
     align-items: flex-start;
-    height: 24rem;
+    height: 30rem;
 }
 .result-card.small {
     width: 20%;
@@ -88,4 +88,7 @@ input {
 }
 .result-card p {
     margin-top: -1%;
+}
+option {
+    height: 10rem;
 }
