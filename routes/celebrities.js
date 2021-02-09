@@ -112,7 +112,7 @@ let populatedMovies = [];
 router.get('/movies', (req, res, next) => {
 
   Movie.find().populate('cast').then(moviesFromDB => {
-        //console.log("My array of populated movies: ", moviesFromDB[0].cast);
+        console.log("My array of populated movies: ", moviesFromDB);
         res.render('movies/index', { moviesList: moviesFromDB })
       }).catch(err => {
         console.log('Error while populating the movies: ', err);
@@ -121,66 +121,43 @@ router.get('/movies', (req, res, next) => {
 
 router.get('/movies/:id/edit', (req, res, next) => {
 
-
   Celebrity.find().lean().then(celebritiesFromDB => {
       Movie.findById(req.params.id).populate('cast').then(MoviefromDB => {
-        console.log("array1: ", MoviefromDB.cast);
-        console.log("array2: ", celebritiesFromDB);
-
-        let helperObj = {}
+        // console.log("array1: ", MoviefromDB.cast);
+        // console.log("array2: ", celebritiesFromDB);
         for(let celeb of celebritiesFromDB) {
-          helperObj[celeb.name] = false;
           celeb.selected = false;
           for(let actor of MoviefromDB.cast) {
             if(actor.name === celeb.name) {
-              helperObj[celeb.name] = true;
               celeb.selected = true;
             }
           }
         }
-        // let myArr = celebritiesFromDB.slice();
-
-        // for(let i=0; i<myArr.length; i++) {
-        //   if(helperObj[myArr[i].name] === true) {
-        //     myArr[i].selected = true;
-        //   } else {
-        //     myArr[i].selected = false;
-        //   }
-        // }
-
-        // const newArr = myArr.map(v => ({...v, isActive: true}))
-
-        console.log("my array: ", celebritiesFromDB);
-
-        // let arr =  celebritiesFromDB.map(celebObj => {
-        //     for(let actor of MoviefromDB.cast) {
-        //       if(actor.name === celebObj.name) {
-        //         return true;
-        //       }
-        //     }
-        //     return false;
-        //  })
-        // console.log(arr);
         res.render('movies/edit', {movie: MoviefromDB, celebrities: celebritiesFromDB})
       }).catch(err => {
         console.log('Error while getting a movie by ID: ', err);
         next();
       })
-
     })
     .catch(err => {
       console.log('Error when finding all celebrities: ', err);
     })
+})
 
-
-  // Movie.findById(req.params.id).populate('cast').then(MoviefromDB => {
-  //   console.log(MoviefromDB);
-
-  //   res.render('movies/edit', {movie: MoviefromDB})
-  // }).catch(err => {
-  //   console.log('Error while getting a movie by ID: ', err);
-  //   next();
-  // })
+router.post('/movies/:id', (req, res, next) => {
+  //use model update
+  const { title, genre, plot, celebrity } = req.body;
+  console.log("celebrity :", celebrity);
+  Movie.updateOne({_id: req.params.id}, {title: title, genre: genre, plot: plot, cast: celebrity})
+   .then(q => {
+     console.log("Number of elements modified: ", q.n);
+     res.redirect('/movies')
+  }).catch(err => {
+     console.log('Error while updating a celebrity: ', err);
+    //  next();
+  })
+  console.log('Hello!!!', req.params.id)
+  console.log(req.body)
 })
 
 module.exports = router;
