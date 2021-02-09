@@ -30,7 +30,7 @@ app.use("/", index);
 
 
 
-const celebritys = require("./routes/celebritys");
+const celebritys = require("./routes/celebrities");
 app.get("/", celebritys);
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes

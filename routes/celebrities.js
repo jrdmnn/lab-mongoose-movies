@@ -6,14 +6,14 @@ router.get('routes/celebrities', (req, res) => {
   Celebrity.find().then(celebrityFromDB => {
     console.log(celebrityFromDB);
     
-    res.render('celebritys', { celebrityList: celebrityFromDB})
+    res.render('celebrities', { celebrityList: celebrityFromDB})
   }).catch(err => {
     console.log(err);
   })
 })
 
 
-router.post('/celebritys', (req, res) => {
+router.post('/celebrities', (req, res) => {
   console.log(req.body);
   const name = req.body.name;
   const occupation = req.body. occupation;
@@ -30,7 +30,7 @@ router.post('/celebritys', (req, res) => {
 
     .then( celebrity => {
       console.log('this celebrity was just created: ', celebrity);
-      res.redirect(`/celebrity/${celebrity._id}`)
+      res.redirect(`/celebrities/${celebrity._id}`)
       
     })
     

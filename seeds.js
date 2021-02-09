@@ -8,7 +8,7 @@
 const mongoose = require('mongoose');
 const Celebrity = require('./models/Celebrity');
 
-mongoose.connect('mongodb://localhost/celebritys', {
+mongoose.connect('mongodb://localhost/celebrities', {
   userNewUrlParser: true
 });
 
