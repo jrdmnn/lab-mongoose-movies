@@ -1,8 +1,8 @@
 
-{{#each resp}}
+{{#each movies}}
     <div class="result-card">
-     <h3><a href="/movies/{{_id}}">{{title}}</a><small> &nbsp;{{year}}</small></h3>
-     <p>{{genre}}</p>
+     <h3><a href="/movies/{{_id}}">{{title}}</a></h3>
+     <p>{{year}} - {{genre}}</p>
      <p>{{plot}}</p>
     </div>
 
@@ -12,3 +12,5 @@
      </form> --}}
  
 {{/each}}
+
+     <h4><a href="/movies/new" id="add-btn">Add movie</a></h4>

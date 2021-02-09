@@ -5,11 +5,24 @@ const movieSchema = new Schema({
         type: String,
         required: true,
     },
-    // genre: {
-    //     type: String,
-    //     enum: ['comedy', 'drama', 'action', 'horror', 'other'],
-    //     required: true,
-    // },
+    genre: [
+        {
+            type: String,
+            enum: [
+                'Comedy',
+                'Action',
+                'Crime',
+                'Drama',
+                'Thriller',
+                'Horror',
+                'Sci-fi',
+                'Biography',
+                'History',
+                'Western',
+                'Other',
+            ],
+        },
+    ],
     plot: {
         type: String,
     },
@@ -20,7 +33,12 @@ const movieSchema = new Schema({
         type: String,
     },
 
-    cast: {},
+    cast: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Celebrity',
+        },
+    ],
 });
 
 const Movie = model('Movie', movieSchema);

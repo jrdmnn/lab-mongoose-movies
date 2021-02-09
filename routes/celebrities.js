@@ -58,7 +58,7 @@ router.post('/celebrities/:id', (req, res, next) => {
 
 // Add celebrity
 router.post('/celebrities', (req, res) => {
-    // preventDefault();
+    preventDefault();
     const { name, occupation, catchPhrase } = req.body;
     Celebrity.create({
         name,
