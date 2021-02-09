@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Celebrity = require('./models/Celebrity');
+const Movie = require('./models/Movie')
 
 mongoose.connect('mongodb://localhost/lab-mongoose-movies', {
   userNewUrlParser: true

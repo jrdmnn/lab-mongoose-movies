@@ -1,0 +1,26 @@
+<h2>List of Movies</h2>
+
+{{#each allMovies}}
+
+
+<h3>{{title}}</h3>
+
+<span>{{genre}}</span>
+
+<p>{{plot}}</p>
+
+
+<h4>Starring:</h4>
+{{#each cast}}
+
+<ul>
+<li>{{name}}</li>
+</ul>
+{{/each}}
+
+<p><a style="font-size:15px; text-decoration: none" href="/movies/{{_id}}/edit">Edit this movie details</a></p>
+
+{{/each}}
+
+
+
