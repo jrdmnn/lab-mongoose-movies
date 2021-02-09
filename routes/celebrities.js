@@ -4,7 +4,6 @@ const Movie = require('../models/movie');
 
 router.get('/celebrities', (req, res, next) => {
   Celebrity.find().then(celebritiesFromDB => {
-    //console.log(celebritiesFromDB);
     res.render('celebrities/index', { celebritiesList: celebritiesFromDB })
   }).catch(err => {
     console.log('Error while getting the list of all celebrities from the database: ', err);
@@ -14,7 +13,6 @@ router.get('/celebrities', (req, res, next) => {
 
 router.get('/celebrities/:id', (req, res, next) => {
   Celebrity.findById(req.params.id).then(celebrityfromDB => {
-    //console.log(celebrityfromDB);
     res.render('celebrities/show', { celebrityDetails: celebrityfromDB})
   }).catch(err => {
     console.log('Error while getting the list of all celebrities from the database: ', err);
@@ -55,7 +53,6 @@ router.post('/celebrities/:id/delete', (req, res, next) => {
 
 router.get('/celebrities/:id/edit', (req, res, next) => {
   Celebrity.findById(req.params.id).then(celebrityfromDB => {
-    // console.log(celebrityfromDB);
     res.render('celebrities/edit', {celebrity: celebrityfromDB}) 
   }).catch(err => {
     console.log('Error while getting a celebrity by ID: ', err);
@@ -64,11 +61,9 @@ router.get('/celebrities/:id/edit', (req, res, next) => {
 })
 
 router.post('/celebrities/:id', (req, res, next) => {
-  //use model update
   const { name, occupation, catchPhrase } = req.body;
   Celebrity.updateOne({_id: req.params.id}, {name: name, occupation: occupation, catchPhrase: catchPhrase})
   .then(q => {
-    //console.log("Number of elements modified: ", q.n);
     res.redirect('/celebrities')
   }).catch(err => {
     console.log('Error while updating a celebrity: ', err);
@@ -123,8 +118,6 @@ router.get('/movies/:id/edit', (req, res, next) => {
 
   Celebrity.find().lean().then(celebritiesFromDB => {
       Movie.findById(req.params.id).populate('cast').then(MoviefromDB => {
-        // console.log("array1: ", MoviefromDB.cast);
-        // console.log("array2: ", celebritiesFromDB);
         for(let celeb of celebritiesFromDB) {
           celeb.selected = false;
           for(let actor of MoviefromDB.cast) {
@@ -145,7 +138,6 @@ router.get('/movies/:id/edit', (req, res, next) => {
 })
 
 router.post('/movies/:id', (req, res, next) => {
-  //use model update
   const { title, genre, plot, celebrity } = req.body;
   console.log("celebrity :", celebrity);
   Movie.updateOne({_id: req.params.id}, {title: title, genre: genre, plot: plot, cast: celebrity})
@@ -154,10 +146,7 @@ router.post('/movies/:id', (req, res, next) => {
      res.redirect('/movies')
   }).catch(err => {
      console.log('Error while updating a celebrity: ', err);
-    //  next();
   })
-  console.log('Hello!!!', req.params.id)
-  console.log(req.body)
 })
 
 module.exports = router;
