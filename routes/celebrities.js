@@ -4,7 +4,6 @@ const Celebrity = require('../models/Celebrity.js');
 
 // Add celeb form
 router.get('/celebrities/new', (req, res) => {
-  console.log('add celeb');
   res.render('celebrities/new')
 })
 
@@ -15,7 +14,6 @@ router.get('/celebrities/:id/edit', (req, res) => {
 
   Celebrity.findById(id)
     .then(celebrity => {
-      console.log('want to render celeb edit');
       res.render('celebrities/edit', { celebrity: celebrity })
     })
     .catch(err => {
@@ -24,7 +22,7 @@ router.get('/celebrities/:id/edit', (req, res) => {
 })
 
 
-// Edit celeb view
+// Edit celeb post
 router.post('/celebrities/:id', (req, res) => {
   const {name, occupation, catchPhrase} = req.body
 
@@ -40,8 +38,7 @@ router.post('/celebrities/:id', (req, res) => {
 
 // Delete a celeb
 router.post('/celebrities/:id/delete', (req, res) => {
-  const id = req.params.id
-  console.log(id);
+  const id = req.params.id;
 
   Celebrity.findByIdAndRemove(id)
     .then(celebrity => {
@@ -53,12 +50,8 @@ router.post('/celebrities/:id/delete', (req, res) => {
 })
 
 
-
-
-
 // Add celeb to db
 router.post('/celebrities', (req, res) => {
-  console.log('try post');
   const { name, occupation, catchPhrase } = req.body;
 
   Celebrity.create({ name, occupation, catchPhrase })

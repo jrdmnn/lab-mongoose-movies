@@ -16,6 +16,36 @@ router.get('/movies', (req, res) => {
     })
 })
 
+// Access edit movie view
+router.get('/movies/:id/edit', (req, res) => {
+  const id = req.params.id;
+  const celebrities = Celebrity.find();
+
+  Movie.findById(id)
+    .populate('cast')
+    .then(movie => {
+      console.log(movie);
+      res.render('movies/edit', { movie: movie})
+    })
+    .catch(err => {
+      console.log(err);
+    })
+})
+
+
+// Edited movie post
+router.post('/movies/:id', (req, res) => {
+  const { title, genre, plot, cast } = req.body
+
+  Movie.updateOne({ title, genre, plot, cast })
+    .then(movie => {
+      res.redirect('/movies')
+    })
+    .catch(err => {
+      console.log(err);
+    });
+})
+
 
 // Access add movie form
 router.get('/movies/new', (req, res) => {

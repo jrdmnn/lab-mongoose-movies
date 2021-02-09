@@ -6,7 +6,8 @@
   <p>Title: {{this.title}}</p>
   <p>Genre: {{this.genre}}</p>
   <p>Plot: {{this.plot}}</p>
-  <p>Cast: <span>{{#each this.cast}}{{this.name}}{{/each}}</span></p>
+  <p>Cast: <span>{{#each this.cast}}{{this.name}} {{/each}}</span></p>
+  <a href="/movies/{{this._id}}/edit">Edit this movie</a>
   <hr>
   {{/each}}
 </div>
