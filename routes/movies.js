@@ -41,22 +41,29 @@ router.get('/movies/new', (req, res) => {
 
 router.get('/movies/edit/:id', (req, res) => {
   const movieID = req.params.id;
-  Movie.findById(movieID)
-  .then(movieInfo => {
-    res.render('movies/edit', { movieInfo: movieInfo})
-  }).catch(err => {
+  Celebrity.find().then(celebritiesFromDB => {
+    Movie.findById(movieID)
+    .then(movieInfo => {
+      res.render('movies/edit', { celebrities: celebritiesFromDB, movieInfo: movieInfo})
+    }).catch(err => {
+      console.log(err);
+    })
+  })
+  .catch(err => {
     console.log(err);
   })
+  
 })
 
 router.post('/movies/edit/:id', (req, res) => {
   const movieID = req.params.id;
-  const { title, genre, plot } = req.body;
+  const { title, genre, plot, cast } = req.body;
 
   Movie.findByIdAndUpdate(movieID, {
     title: title,
     genre: genre,
-    plot: plot
+    plot: plot,
+    cast: cast
   })
   .then(movie => {
     res.redirect(`/movies/${movie._id}`)
