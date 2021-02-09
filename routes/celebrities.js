@@ -122,10 +122,45 @@ router.get('/movies', (req, res, next) => {
 router.get('/movies/:id/edit', (req, res, next) => {
 
 
-  Celebrity.find().then(celebritiesFromDB => {
+  Celebrity.find().lean().then(celebritiesFromDB => {
       Movie.findById(req.params.id).populate('cast').then(MoviefromDB => {
-        console.log(MoviefromDB);
-        console.log(celebritiesFromDB);
+        console.log("array1: ", MoviefromDB.cast);
+        console.log("array2: ", celebritiesFromDB);
+
+        let helperObj = {}
+        for(let celeb of celebritiesFromDB) {
+          helperObj[celeb.name] = false;
+          celeb.selected = false;
+          for(let actor of MoviefromDB.cast) {
+            if(actor.name === celeb.name) {
+              helperObj[celeb.name] = true;
+              celeb.selected = true;
+            }
+          }
+        }
+        // let myArr = celebritiesFromDB.slice();
+
+        // for(let i=0; i<myArr.length; i++) {
+        //   if(helperObj[myArr[i].name] === true) {
+        //     myArr[i].selected = true;
+        //   } else {
+        //     myArr[i].selected = false;
+        //   }
+        // }
+
+        // const newArr = myArr.map(v => ({...v, isActive: true}))
+
+        console.log("my array: ", celebritiesFromDB);
+
+        // let arr =  celebritiesFromDB.map(celebObj => {
+        //     for(let actor of MoviefromDB.cast) {
+        //       if(actor.name === celebObj.name) {
+        //         return true;
+        //       }
+        //     }
+        //     return false;
+        //  })
+        // console.log(arr);
         res.render('movies/edit', {movie: MoviefromDB, celebrities: celebritiesFromDB})
       }).catch(err => {
         console.log('Error while getting a movie by ID: ', err);

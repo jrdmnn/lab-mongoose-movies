@@ -10,14 +10,14 @@
   <label for="plot">Plot: </label>
   <input type="text" name="plot" id="plot" value="{{plot}}">
 
-  {{!-- <label for="celebrity">Cast: </label>
+  <button type="submit">Update the movie</button>
+
+  <label for="celebrity">Cast: </label>
   <select name="celebrity" id="celebrity" multiple>
     {{#each cast}}
       <option value="{{this._id}}" selected>{{this.name}}</option>
     {{/each}}
-  </select> --}}
-
-  <button type="submit">Update the movie</button>
+  </select>
 
 </form>
 {{/with}}
@@ -26,8 +26,11 @@
 <label for="celebrity">Cast: </label>
 <select name="celebrity" id="celebrity" multiple>
   {{#each celebrities}}
-    {{!-- {{this.name}} --}} 
+        {{#if this.selected}}
+        <option value="{{this._id}}" selected>{{this.name}}</option>
+        {{else}}
         <option value="{{this._id}}">{{this.name}}</option>
+        {{/if}}
   {{/each}}
 </select>
 </form>
