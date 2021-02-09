@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const Celebrity = require('../models/celebrity');
+const Movie = require('../models/movie');
 
 router.get('/celebrities', (req, res, next) => {
   Celebrity.find().then(celebritiesFromDB => {
@@ -67,7 +68,7 @@ router.post('/celebrities/:id', (req, res, next) => {
   const { name, occupation, catchPhrase } = req.body;
   Celebrity.updateOne({_id: req.params.id}, {name: name, occupation: occupation, catchPhrase: catchPhrase})
   .then(q => {
-    console.log("Number of elements modified: ", q.n);
+    //console.log("Number of elements modified: ", q.n);
     res.redirect('/celebrities')
   }).catch(err => {
     console.log('Error while updating a celebrity: ', err);
@@ -76,9 +77,33 @@ router.post('/celebrities/:id', (req, res, next) => {
 })
 
 
+/* Add a new movie */
+router.get('/movies/new', (req, res, next) => {
+  Celebrity.find().then(celebritiesFromDB => {
+    res.render('movies/new', { celebrities: celebritiesFromDB });
+  })
+  .catch(err => {
+    console.log(err);
+  })
+})
 
+router.post('/movies', (req, res) => {
+  const { title, genre, plot, celebrity } = req.body; 
 
+  const newMovie = new Movie({
+    title: title,
+    genre: genre,
+    plot: plot,
+    cast: celebrity
+  });
 
+  newMovie.save().then(movie => {
+    console.log('Movie successfully saved: ', movie);
+  }).catch(err => {
+    console.log('Error while saving a new moive: ', err);
+  });
+
+})
 
 
 module.exports = router;
