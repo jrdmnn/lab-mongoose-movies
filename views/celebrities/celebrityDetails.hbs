@@ -1,0 +1,10 @@
+<h2>Celebrities</h2>
+ <hr>
+
+{{#with celebritiesList}}
+  <p>Name:  <b>{{this.name}}</b></p>
+  <p>Occupation:  <b>{{this.name}}</b></p>
+  <p>Catch Phrase:  <b>{{this.catchPhrase}}</b></p>
+  <a href="{{_id}}/editCeleb">Edit this celebrity</a>
+  <hr>
+{{/with}}

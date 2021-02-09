@@ -1,11 +1,6 @@
 <h2>Celebrities</h2>
  <hr>
-
-{{#each celebritiesList}}
-  {{!-- <p><a href="/celebrities/{{this._id}}">{{this.name}}</a></p> --}}
-
-  <p>Name:  <b>{{this.name}}</b></p>
-  <p>Occupation:  <b>{{this.name}}</b></p>
-  <p>Catch Phrase:  <b>{{this.catchPhrase}}</b></p>
-   <hr>
+    {{#each celebritiesList}}
+    <a href="/celebrities/{{this._id}}"><p>Name:  <b>{{this.name}}</b></p></a>
+    <hr>
 {{/each}}
