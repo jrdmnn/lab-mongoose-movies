@@ -7,7 +7,9 @@
     {{#each this.cast}}
     <li>{{this.name}} {{this.lastName}} </li>
     {{/each}}
-  </ul></p>
+  </ul>
+  </p>
+  <a href="/movies/{{this._id}}/edit">Edit </a>
 
   <form action="/movies/{{this._id}}/delete" method="POST">
     <button>Delete</button>

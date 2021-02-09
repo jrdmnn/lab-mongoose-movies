@@ -50,6 +50,18 @@ router.get('/movies/add', (req, res) => {
       console.log(err);
     })
 })
+router.get('/movies/:id/edit', (req, res) => {
+  Movie.findById(req.params.id)
+    .populate('cast')
+    .then(movie => res.render('movies/edit', {movie}))
+    .catch(error => console.log(error));
+});
 
+router.post('/movies/:id', (req, res) => {
+  const { title, genre, plot, cast } = req.body;
+  Movie.findByIdAndUpdate(req.params.id, { title, genre, plot, cast })
+    .then(() => res.redirect(`/movies`))
+    .catch(error => console.log(error));
+});
 
 module.exports = router; 
