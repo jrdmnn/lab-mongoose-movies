@@ -10,6 +10,52 @@ router.get('/celebrities', (req, res) => {
     .catch(err => console.log(err));
 })
 
+router.post('/celebrities', (req,res) => {
+  const name = req.body.name;
+  const occupation = req.body.occupation;
+  const catchPhrase = req.body.catchPhrase;
+  console.log(name, occupation, catchPhrase);
+  Celebrity.create({
+    name: name,
+    occupation: occupation,
+    catchPhrase: catchPhrase
+  })
+  .then(celebrity => {
+    console.log('This person was just created: ', celebrity);
+    res.redirect(`/celebrities/${celebrity._id}`)
+  })
+})
+
+router.get('/celebrities/new', (req, res) => {
+  res.render('celebrities/new');
+})
+
+// router.get('/celebrities/:id/delete', (req, res) => {
+//   res.render('celebrities');
+// })
+
+router.get('/celebrities/:id/delete', (req, res) => {
+  const celebrityId = req.params.id;
+  console.log(celebrityId)
+  Celebrity.findByIdAndDelete(celebrityId)
+  .then(() => {
+    res.redirect('celebrities')
+  }).catch(err => console.log(err))
+})
+
+router.get('/celebrities/:id/edit', (req, res) => {
+  const celebrityId = req.params.id;
+  console.log(celebrityId)
+  Celebrity.findById(celebrityId)
+  .then(() => {
+    res.render(`celebrities/${celebrity._Id}`)
+  })
+  .catch(err => {
+    res.render('celebrities/edit')
+    console.log(err)
+  })
+})
+
 router.get('/celebrities/:id', (req, res) => {
   const celebrityId = req.params.id;
   Celebrity.findById(celebrityId)
@@ -19,25 +65,5 @@ router.get('/celebrities/:id', (req, res) => {
   })
   .catch(err => console.log(err))
 })
-
-// router.post('celebrities/new', (req,res) => {
-//   const {name, occupation, catchPhrase }  = req.body;
-//   console.log(req.body);
-//   Celebrity.create({
-//     name: name,
-//     occupation: occupation,
-//     catchPhrase: catchPhrase
-//   })
-//   .then(celebrity => {
-//     console.log('This person was just created: '), celebrity;
-//     res.redirect(`/celebrities/${celebrity._id}`)
-//   })
-// })
-
-router.get('/celebrities/new', (req, res) => {
-  res.render('new');
-})
-
-
 
 module.exports = router;

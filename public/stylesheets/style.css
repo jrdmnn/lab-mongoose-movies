@@ -1,6 +1,7 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+  font-family: "Lucida Grande", Helvetica, Arial, sans-serif; 
+}
 
 a {
   color: #00b7ff;
@@ -18,5 +19,9 @@ p, h2, h3, h4, h5, h6{
    text-align: center;
  }
 
+ .form-layout {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  text-align: center;
+ }
 
 /*# sourceMappingURL=style.css.map */
