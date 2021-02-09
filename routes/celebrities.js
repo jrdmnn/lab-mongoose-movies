@@ -62,6 +62,36 @@ router.post('/celebrities/:id/delete', (req, res,next) => {
     })
 })
 
+//Celebrity Edit 
+router.get('/celebrities/:id/edit', (req,res) => {
+  const celebrityId = req.params.id;
+  Celebrity.findById(celebrityId)
+  .then(celebrityFromDB => {
+    res.render('celebrities/edit', {celebrity : celebrityFromDB});
+  })
+  .catch(err => {
+    next(err);
+  })
+})
+
+//celebrity Edit post 
+router.post('/celebrities/:id', (req, res) => {
+  const celebrityId = req.params.id;
+  const name = req.body.name;
+  const occupation = req.body.occupation;
+  const catchPhrase = req.body.catchPhrase;
+  Book.findByIdAndUpdate(celebrityId, {
+    name: name,
+    occupation: occupation,
+    catchPhrase: catchPhrase
+  })
+    .then(celebrityFromDB => {
+      res.redirect(`/celebrities/${celebrityFromDB._id}`);
+    })
+    .catch(err => {
+      console.log(err);
+    })
+})
 
 
 
