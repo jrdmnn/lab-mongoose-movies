@@ -20,23 +20,24 @@ router.get('/celebrities/:id', (req, res) => {
   .catch(err => console.log(err))
 })
 
+// router.post('celebrities/new', (req,res) => {
+//   const {name, occupation, catchPhrase }  = req.body;
+//   console.log(req.body);
+//   Celebrity.create({
+//     name: name,
+//     occupation: occupation,
+//     catchPhrase: catchPhrase
+//   })
+//   .then(celebrity => {
+//     console.log('This person was just created: '), celebrity;
+//     res.redirect(`/celebrities/${celebrity._id}`)
+//   })
+// })
+
 router.get('/celebrities/new', (req, res) => {
-  res.render('celebrities/new');
+  res.render('new');
 })
 
-router.post('celebrities/new', (req,res) => {
-  const {name, occpuation, catchPhrase }  = req.body;
-  console.log(req.body);
-  Celebrity.create({
-    name: name,
-    occupation: occupation,
-    catchPhrase: catchPhrase
-  })
-  .then(celebrity => {
-    console.log('This person was just created: '), celebrity;
-    res.redirect(`/celebrities/${celebrity._id}`)
-  })
-})
 
 
 module.exports = router;
