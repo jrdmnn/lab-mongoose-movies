@@ -22,7 +22,8 @@ router.post('/celebrities', (req, res) =>{
   const name = req.body.name;
   const occupation =req.body.occupation;
   const catchPhrase = req.body.catchPhrase
-  Celebrity.create({name: name, occupation: occupation, catchPhrase: catchPhrase}).then(celeb=>  res.redirect('/celebrities')).catch(err=>console.log(`Something went wrong${err}`))
+  Celebrity.create({name: name, occupation: occupation, catchPhrase: catchPhrase})
+  .then(celeb=>  res.redirect('/celebrities')).catch(err=>console.log(`Something went wrong${err}`))
 
   
 })
