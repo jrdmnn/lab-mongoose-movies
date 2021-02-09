@@ -3,7 +3,7 @@ const Celebrity = require('../models/Celebrity');
 
 router.get('/celebrities', (req, res) => {
   Celebrity.find()
-    .then(celebrities => res.render('celebrities', {celebrities}))
+    .then(celebrities => res.render('celebrities/index', {celebrities}))
     .catch(error => console.log(error));
 
 });
@@ -16,7 +16,7 @@ router.post('/celebrities', (req, res) => {
 });
 
 router.get('/celebrities/new', (req, res) => {
-  res.render('newCelebrity', {});
+  res.render('celebrities/new', {});
 });
 
 router.post('/celebrities/:id/delete', (req, res) => {
@@ -27,13 +27,13 @@ router.post('/celebrities/:id/delete', (req, res) => {
 
 router.get('/celebrities/:id/edit', (req, res) => {
   Celebrity.findById(req.params.id)
-    .then(celebrity => res.render('editCelebrity', {celebrity}))
+    .then(celebrity => res.render('celebrities/edit', {celebrity}))
     .catch(error => console.log(error));
 });
 
 router.get('/celebrities/:id', (req, res) => {
   Celebrity.findById(req.params.id)
-    .then(celebrity => res.render('showCelebrity', {celebrity}))
+    .then(celebrity => res.render('celebrities/show', {celebrity}))
     .catch(error => console.log(error));
 });
 
@@ -43,5 +43,6 @@ router.post('/celebrities/:id', (req, res) => {
     .then(() => res.redirect(`/celebrities`))
     .catch(error => console.log(error));
 });
+
 
 module.exports = router;
