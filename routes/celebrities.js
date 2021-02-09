@@ -34,9 +34,10 @@ router.post('/celebrities/:id/delete', (req, res) => {
 
 router.get('/celebrities/:id/edit', (req, res) => {
   const celebrityId = req.params.id;
+  //console.log(`my current log: `, celebrityId);
   Celebrity.findById(celebrityId)
     .then((editedCelebrity) => {
-    res.render('/celebrities/edit', {editedCelebrity: editedCelebrity});
+    res.render(`celebrities/edit`, {editedCelebrity: editedCelebrity});
   }).catch(err => {
       console.log(err);
     })
@@ -45,6 +46,7 @@ router.get('/celebrities/:id/edit', (req, res) => {
 
 router.post('/celebrities/:id', (req, res) => {
   const celebrityId = req.params.id;
+  //console.log(`my curent log is: `, celebrityId);
   const { name, occupation, catchPhrase } = req.body;
   Celebrity.findByIdAndUpdate(celebrityId, { name: name, occupation: occupation, catchPhrase: catchPhrase })
     .then(() => {
