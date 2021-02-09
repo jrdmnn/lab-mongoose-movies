@@ -30,10 +30,6 @@ router.get('/celebrities/new', (req, res) => {
   res.render('celebrities/new');
 })
 
-// router.get('/celebrities/:id/delete', (req, res) => {
-//   res.render('celebrities');
-// })
-
 router.get('/celebrities/:id/delete', (req, res) => {
   const celebrityId = req.params.id;
   console.log(celebrityId)
@@ -45,13 +41,11 @@ router.get('/celebrities/:id/delete', (req, res) => {
 
 router.get('/celebrities/:id/edit', (req, res) => {
   const celebrityId = req.params.id;
-  console.log(celebrityId)
   Celebrity.findById(celebrityId)
-  .then(() => {
-    res.render(`celebrities/${celebrity._Id}`)
+  .then((celebFromDB) => {
+    res.render(`celebrities/edit.hbs`, {celebrity: celebFromDB})
   })
   .catch(err => {
-    res.render('celebrities/edit')
     console.log(err)
   })
 })
@@ -62,6 +56,20 @@ router.get('/celebrities/:id', (req, res) => {
   .then(celebrity => {
     console.log(celebrity)
     res.render('celebrities/show', { show: celebrity })
+  })
+  .catch(err => console.log(err))
+})
+
+router.post('/celebrities/:id/edit', (req, res) => {
+  const {name, occupation, catchPhrase} = req.body;
+  const celebrityId = req.params.id;
+  Celebrity.findByIdAndUpdate(celebrityId, {
+    name,
+    occupation,
+    catchPhrase
+  })
+  .then(() => {
+    res.redirect(`/celebrities`)
   })
   .catch(err => console.log(err))
 })
