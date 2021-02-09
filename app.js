@@ -32,6 +32,10 @@ app.use("/", index);
 const celebrities = require("./routes/celebrities");
 app.use("/", celebrities);
 
+//route for movies 
+const movies = require("./routes/movies");
+app.use("/", movies); 
+
 //route for celebrities routes
 //const celebritiesId = require("./routes/celebrities");
 //app.use("/", celebritiesId);
