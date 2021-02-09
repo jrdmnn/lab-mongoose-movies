@@ -5,7 +5,7 @@ const Celebrity = require('../models/Celebrity.js');
 // Add celeb form
 router.get('/celebrities/new', (req, res) => {
   console.log('add celeb');
-  res.render('celebrities/new.hbs')
+  res.render('celebrities/new')
 })
 
 
@@ -77,7 +77,7 @@ router.post('/celebrities', (req, res) => {
 router.get('/celebrities', (req, res) => {
   Celebrity.find()
     .then(allCelebs => {
-      res.render('celebrities/index.hbs', { celebs: allCelebs })
+      res.render('celebrities/index', { celebs: allCelebs })
     })
     .catch(err => {
       console.log(err);
@@ -90,7 +90,7 @@ router.get('/celebrities/:id', (req, res) => {
   const celebId = req.params.id;
   Celebrity.findById(celebId)
     .then(celebrity => {
-      res.render('celebrities/show.hbs', { celebrity: celebrity })
+      res.render('celebrities/show', { celebrity: celebrity })
     })
     .catch(err => {
       console.log(err);
