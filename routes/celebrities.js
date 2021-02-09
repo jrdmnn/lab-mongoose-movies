@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const { route } = require(".");
-const Celebrity = require('../models/celebrity'); 
+const Celebrity = require('../models/Celebrity'); 
 
 //GET to the list of celebrities
 router.get("/celebrities", (req, res, next) => {

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Celebrity = require('./models/celebrity'); 
+const Celebrity = require('./models/Celebrity'); 
 
 const DB_NAME = 'lab-mongoose-movies';
 
