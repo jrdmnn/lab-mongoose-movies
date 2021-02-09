@@ -21,6 +21,14 @@ router.get('/new', (req, res) => {
     .catch(error => res.redirect('/movies/new'));
 });
 
+router.post('/edit/:id', (req, res) => {
+  const { title, genre, plot, cast } = req.body;
+  const movieId = req.params.id;
+  Movie.findByIdAndUpdate(movieId, { title, genre, plot, cast })
+    .then(movie => res.redirect(`/movies/${movie._id}`))
+    .catch(err => console.log(err));
+});
+
 router.post('/:id/delete', (req, res) => {
   Movie.findByIdAndDelete(req.params.id)
     .then(() => res.redirect('/movies'))
