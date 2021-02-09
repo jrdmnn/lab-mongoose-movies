@@ -8,6 +8,7 @@ router.get('/celebrities', (req, res, next) => {
     res.render('celebrities/index', {body})
   }).catch(err => {
     console.log(err);
+    next(error);
   })
 })
 
@@ -18,6 +19,7 @@ router.get('/celebrities/:id', (req, res, next) => {
     res.render('celebrities/show', {body})
   }).catch(err => {
     console.log(err);
+    next(error);
   })
 })
 
@@ -39,8 +41,9 @@ router.post('/celebrities', (req, res, next) => {
   .then(() => {
     res.redirect("celebrities");
   })
-  .catch(() => {
+  .catch((err) => {
     res.render("celebrities/new");
+    console.log(err);
   });
 })
 
@@ -52,6 +55,7 @@ router.post('/celebrities/:id/delete', (req, res, next) => {
   })
   .catch(err => {
     console.log(err);
+    next(error);
   })
 })
 
@@ -63,6 +67,7 @@ router.get('/celebrities/:id/edit', (req, res, next) => {
     res.render('celebrities/edit', {body})
   }).catch(err => {
     console.log(err);
+    next(error);
   })
 })
 
