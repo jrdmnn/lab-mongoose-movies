@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Celebrity = require('./models/celebrity');
+const Celebrity = require('./models/Celebrity');
 
 mongoose
   .connect('mongodb://localhost/lab-mongoose-movies', {
@@ -36,6 +36,7 @@ Celebrity.insertMany(celebrities)
   .catch(err => {
     console.log(err);
   }) 
+
 
   /* const mongoose = require('mongoose');
 const Celebrity = require('./models/celebrity');
