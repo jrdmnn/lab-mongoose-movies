@@ -77,7 +77,7 @@ router.post('/celebrities/:id', (req, res, next) => {
 })
 
 
-/* Add a new movie */
+/* Iteration 8,9: Adding a new movie and Adding actors to the movie cast */
 router.get('/movies/new', (req, res, next) => {
   Celebrity.find().then(celebritiesFromDB => {
     res.render('movies/new', { celebrities: celebritiesFromDB });
@@ -99,11 +99,24 @@ router.post('/movies', (req, res) => {
 
   newMovie.save().then(movie => {
     console.log('Movie successfully saved: ', movie);
+    res.redirect("/movies");
   }).catch(err => {
     console.log('Error while saving a new moive: ', err);
   });
 
 })
 
+let populatedMovies = [];
+
+//Iteration 10: Listing all Movies
+router.get('/movies', (req, res, next) => {
+
+  Movie.find().populate('cast').then(moviesFromDB => {
+        console.log("My array of populated movies: ", moviesFromDB[0].cast);
+        res.render('movies/index', { moviesList: moviesFromDB })
+      }).catch(err => {
+        console.log('Error while populating the movies: ', err);
+      })
+})
 
 module.exports = router;
