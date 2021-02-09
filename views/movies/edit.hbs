@@ -1,0 +1,21 @@
+<h2>Edit movies in database💥</h2>
+
+{{#with movie}}
+<form action="/movies/{{_id}}" method="POST">
+
+   <label for="title">Edit Title: </label>
+    <input type="text" name="title" id="title" value={{title}}> 
+    
+    <label for="genre">Edit Genre: </label>
+    <input type="text" name="genre" id="genre" value={{genre}}> 
+
+    <label for="plot">Edit Plot: </label>
+    <input type="text" name="plot" id="plot" value={{plot}}> 
+
+    <button type="submit">Update movie</button>
+</form>
+
+<br> <br>
+
+<a href="/movies">No update needed? Click to go back to overview...</a>
+{{/with}}

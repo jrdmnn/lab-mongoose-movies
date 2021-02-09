@@ -5,9 +5,9 @@ router.get('/celebrities', (req, res, next) => {
   // get all the celebrities from the database -> find() returns all the documents
   Celebrity.find()
     .then(celebritiesFromDB => {
-      console.log(celebritiesFromDB);
+      console.log('the celebs', celebritiesFromDB);
       // render a celebrities view to display them
-      res.render('celebrities/index', {celebritiesList: celebritiesFromDB })
+      res.render('celebrities/index', {celebritiesList: celebritiesFromDB });
   }).catch(err => {
     next(err)
     //console.log(err);
@@ -38,7 +38,7 @@ router.post('/celebrities/:id/delete', (req, res, next) => {
       console.log(celebrity)
       res.redirect('/celebrities')
     }).catch(err => {
-        next(err)
+        next(err);
         //console.log(err);
       })
 })

@@ -1,0 +1,19 @@
+<h2>Movies Overview 🎞 🎥</h2>
+
+{{#each moviesList}}
+    <p>Title: {{this.title}}</p>
+    <p>Genre: {{this.genre}}</p>
+    <p>Plot:  {{this.plot}}</p>
+    {{#each this.cast}}
+    <p>Cast:  {{name}}</p>
+    {{/each}}
+     <a href="/movies/{{_id}}/edit">Edit movie in database</a>
+{{/each}}
+<br> <br>
+
+<a href="/movies/new">CLICK to add new movies to the database</a>
+
+<br> <br>
+
+<a href="/">Go back to starter page</a> 
+
