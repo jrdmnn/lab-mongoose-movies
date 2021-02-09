@@ -1,15 +1,16 @@
 <h2>Enter details</h2>
+ <div class="result-card highlight">
+    <form action="/celebrities" method="POST" class="form">
 
-<form action="/celebrities" method="POST" class='form'>
+      <label for="name">Name</label>
+      <input type="text" name="name" id="name" value= "">
 
-  <label for="name">Name</label>
-  <input type="text" name="name" id="name" value="">
+      <label for="occupation">Occupation</label>
+      <input type="text" name="occupation" id="occupation" value="">
 
-  <label for="occupation">Occupation</label>
-  <input type="text" name="occupation" id="occupation" value="">
+      <label for="catchPhrase">Catch Phrase</label>
+      <input type="text" name="catchPhrase" id="catchPhrase" value="">
 
-  <label for="catchPhrase">Catch Phrase</label>
-  <input type="text" name="catchPhrase" id="catchPhrase" value="">
-
-  <button type="submit">Add celebrity</button>
-</form>
+      <button type="submit" >Add celebrity</button>
+    </form>
+</div>

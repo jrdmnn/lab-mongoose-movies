@@ -1,11 +1,13 @@
 <h2>Celebrity Highlight</h2>
 
-{{#with resp}}
+    <div class="result-card highlight">
+        {{#with resp}}
 
-    <h4>{{name}}</h4>
-    <p>{{occupation}}</p>
-    <p>{{catchPhrase}}</p>
+            <h4>{{name}}</h4>
+            <p>Occupation: {{occupation}}</p>
+            <p>Quote: "{{catchPhrase}}"</p>
 
-    <a href="/celebrities/{{_id}}/edit">Edit</a>
+            <a href="/celebrities/{{_id}}/edit">Edit</a>
 
-{{/with}}
+        {{/with}}
+    </div>

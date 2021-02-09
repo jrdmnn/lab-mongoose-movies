@@ -13,8 +13,14 @@ router.get('/celebrities', (req, res, next) => {
         });
 });
 
+// Form
+router.get('/celebrities/new', (req, res) => {
+    res.render('celebrities/new');
+});
+
 // See celebrity details
 router.get('/celebrities/:id', (req, res, next) => {
+    console.log('req.params', req.params.id);
     Celebrity.findById(req.params.id)
         .then((resp) => {
             res.render('celebrities/show', { resp });
@@ -22,11 +28,6 @@ router.get('/celebrities/:id', (req, res, next) => {
         .catch((err) => {
             next(err);
         });
-});
-
-// Form
-router.get('/celebrities/new', (req, res) => {
-    res.render('celebrities/new');
 });
 
 // Update celebrity
@@ -57,7 +58,7 @@ router.post('/celebrities/:id', (req, res, next) => {
 
 // Add celebrity
 router.post('/celebrities', (req, res) => {
-    preventDefault();
+    // preventDefault();
     const { name, occupation, catchPhrase } = req.body;
     Celebrity.create({
         name,

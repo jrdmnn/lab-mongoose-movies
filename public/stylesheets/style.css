@@ -2,10 +2,7 @@ body {
     padding: 50px;
     font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
     background-color: #c0c0c0;
-    padding: 75px 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    padding: 50px 0;
 }
 
 a {
@@ -20,9 +17,24 @@ a {
 h1 {
     /* color: 15px; */
 }
+h2 {
+    margin-left: 5%;
+}
 
 /*# sourceMappingURL=style.css.map */
-
+.results-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    /* flex-direction: column; */
+}
+button {
+    width: 24%;
+    background-color: aliceblue;
+    border-radius: 5px;
+    margin-top: 3%;
+}
 .menu {
     display: flex;
     flex-direction: column;
@@ -38,16 +50,17 @@ h1 {
 input {
     line-height: 2rem;
 }
-button {
-    width: 30%;
-    background-color: aliceblue;
-}
+
 #delete-btn {
-    width: 10%;
+    width: 100%;
     margin: 0;
     background-color: transparent;
     text-decoration: none;
     cursor: pointer;
+    border-radius: 5px;
+}
+#add-btn {
+    margin-left: 5%;
 }
 .result-card {
     display: flex;
@@ -61,9 +74,17 @@ button {
     box-shadow: 2px 2px 10px 0 #eee;
     margin: 7% 2% 0 5%;
     padding: 20px;
-    width: 600px;
-    height: 150px;
+    width: 70%;
+    height: 10rem;
     background-color: rgba(147, 158, 158, 0.2);
+}
+.result-card.highlight {
+    align-items: flex-start;
+    height: 20rem;
+}
+.result-card.small {
+    width: 20%;
+    height: 8rem;
 }
 .result-card p {
     margin-top: -1%;
