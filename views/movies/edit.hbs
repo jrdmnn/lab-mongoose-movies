@@ -9,14 +9,25 @@
 
   <label for="plot">Plot: </label>
   <input type="text" name="plot" id="plot" value="{{plot}}">
-  <button type="submit">Update the movie</button>
 
-  <label for="celebrity">Cast: </label>
+  {{!-- <label for="celebrity">Cast: </label>
   <select name="celebrity" id="celebrity" multiple>
     {{#each cast}}
       <option value="{{this._id}}" selected>{{this.name}}</option>
     {{/each}}
-  </select>
+  </select> --}}
+
+  <button type="submit">Update the movie</button>
 
 </form>
 {{/with}}
+
+<form action="/movies/{{_id}}" method="POST">
+<label for="celebrity">Cast: </label>
+<select name="celebrity" id="celebrity" multiple>
+  {{#each celebrities}}
+    {{!-- {{this.name}} --}} 
+        <option value="{{this._id}}">{{this.name}}</option>
+  {{/each}}
+</select>
+</form>

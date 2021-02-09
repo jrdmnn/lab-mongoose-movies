@@ -120,14 +120,32 @@ router.get('/movies', (req, res, next) => {
 })
 
 router.get('/movies/:id/edit', (req, res, next) => {
-  Movie.findById(req.params.id).populate('cast').then(MoviefromDB => {
-    console.log(MoviefromDB);
-    
-    res.render('movies/edit', {movie: MoviefromDB}) 
-  }).catch(err => {
-    console.log('Error while getting a movie by ID: ', err);
-    next();
-  })
+
+
+  Celebrity.find().then(celebritiesFromDB => {
+      Movie.findById(req.params.id).populate('cast').then(MoviefromDB => {
+        console.log(MoviefromDB);
+        console.log(celebritiesFromDB);
+        res.render('movies/edit', {movie: MoviefromDB, celebrities: celebritiesFromDB})
+      }).catch(err => {
+        console.log('Error while getting a movie by ID: ', err);
+        next();
+      })
+
+    })
+    .catch(err => {
+      console.log('Error when finding all celebrities: ', err);
+    })
+
+
+  // Movie.findById(req.params.id).populate('cast').then(MoviefromDB => {
+  //   console.log(MoviefromDB);
+
+  //   res.render('movies/edit', {movie: MoviefromDB})
+  // }).catch(err => {
+  //   console.log('Error while getting a movie by ID: ', err);
+  //   next();
+  // })
 })
 
 module.exports = router;
