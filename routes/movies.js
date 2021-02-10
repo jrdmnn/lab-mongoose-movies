@@ -4,8 +4,10 @@ const Movie = require('../models/Movie')
 const Celebrity = require('../models/Celebrity')
 
 router.get("/movies", (req, res) => {
-  Movie.find().then(moviesFDB => {
-    //console.log(celebsFDB)
+  Movie.find()
+  .populate('cast')
+  .then(moviesFDB => {
+    console.log(moviesFDB)
     res.render('movies/index.hbs', {moviesFDB})
   })
 });
@@ -16,6 +18,7 @@ Celebrity.find().then(celebsFDB => {
   res.render('movies/new.hbs', {celebList : celebsFDB})
   })
 });
+
 
 router.post('/movies', (req, res) => {
   console.log('BODY', req.body)

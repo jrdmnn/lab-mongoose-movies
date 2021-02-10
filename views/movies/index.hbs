@@ -1,6 +1,14 @@
 <h1>This is the movies page</h1>
 
 {{#each moviesFDB}}
-<p>{{this.name}}</p>
+<h1>{{this.name}}</h1>
+<p>{{this.genre}}</p>
+<p>{{this.plot}}</p>
+<ul>
+  {{#each cast}}
+  <li>{{this.name}}</li>
+  {{/each}}
+</ul>
+
 {{/each}}
 <a href="/movies/new">Add a movie</a>
