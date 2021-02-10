@@ -139,6 +139,7 @@ Here's the route we will be using:
 6. In the `views/celebrities/index.hbs` view file:
     - As part of the loop that displays each celebrity's name, add a link that goes to the `/celebrities/:id` route with the `:id` replaced by the actual celebrity's id.
 
+
 ## Iteration #4: Adding New Celebrities
 
 Now that we have a list of celebrities, as well as a personalized details page for each celebrity, let's make it so the user can **add new celebrities to the database**
@@ -147,6 +148,7 @@ Now that we have a list of celebrities, as well as a personalized details page f
 |---------------|-----------|-------------------------------|
 | `/celebrities/new` |    GET    | Show a form to create a celebrity |
 |   `/celebrities`   |   POST    | Send the data from the form to this route to create the celebrity and save to the database  |
+
 
 ### Steps we will follow in this iteration:
 

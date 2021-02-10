@@ -1,17 +1,13 @@
-/*In the `seeds.js` file:
-    - Create an array of 3 objects, each with `name`, `occupation` and `catchPhrase` for our initial celebrities.
-    - Call the `Celebrity` model's `create` method with the array as argument.
-    - In the `create` method's callback, display feedback.
-5. Run the seed file with `node` to seed your database.
-6. Check the database in Compass to confirm that your data was saved. */
 
 const mongoose = require('mongoose');
 const Celebrity = require('./models/Celebrity');
 
+// here is theconnection / name  of the database
+// this adding the Database auto. 
 mongoose.connect('mongodb://localhost/celebrities', {
   userNewUrlParser: true
 });
-
+ 
 const celebrity = [
   {
     name: "celebrity1",
@@ -34,14 +30,9 @@ const celebrity = [
   }
 ];
 
-// to export to compass 
-Celebrity.create(celebrity)
-.then(celebritysSeed => { 
-  console.log('success!')
-  mongoose.connection.close(); 
-})
-.catch(err => {
-  console.log(err);
-});
 
+// to create something 
+//get an obj. as a p
+ 
+// Celebrity.create()or Celebrity.insertMany()
 
