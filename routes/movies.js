@@ -15,16 +15,21 @@ router.get('/movies', (req, res, next) => {
             next();
         });
 });
+
+// Form
 router.get('/movies/new', (req, res) => {
-    Celebrity.find().then((cel) => {
-        res.render('movies/new', { cel });
-    });
+    Celebrity.find()
+        .populate('cast')
+        .then((cast) => {
+            res.render('movies/new', { cast });
+        });
 });
 
 // Get movie details
 router.get('/movies/:id', (req, res, next) => {
     console.log('req.params', req.params.id);
     Movie.findById(req.params.id)
+        .populate('cast')
         .then((movie) => {
             res.render('movies/show', { movie });
         })
@@ -32,8 +37,6 @@ router.get('/movies/:id', (req, res, next) => {
             next(err);
         });
 });
-
-// Form
 
 // Add movie
 router.post('/movies', (req, res) => {
@@ -53,16 +56,16 @@ router.post('/movies', (req, res) => {
         })
         .catch((err) => {
             console.log(err);
-            res.redirect(`/movies/new`);
+            res.redirect(`/movies/new`, { cast });
         });
 });
 
 // Update movie
 router.get('/movies/:id/edit', (req, res, next) => {
-    Celebrity.find().then((cel) => {
+    Celebrity.find().then((cast) => {
         Movie.findById(req.params.id)
             .then((movie) => {
-                res.render('movies/edit', { movie, cel });
+                res.render('movies/edit', { movie, cast });
             })
             .catch((err) => {
                 next(err);

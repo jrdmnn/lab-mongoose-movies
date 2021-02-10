@@ -30,32 +30,6 @@ router.get('/celebrities/:id', (req, res, next) => {
         });
 });
 
-// Update celebrity
-router.get('/celebrities/:id/edit', (req, res, next) => {
-    Celebrity.findById(req.params.id)
-        .then((resp) => {
-            res.render('celebrities/edit', { resp });
-        })
-        .catch((err) => {
-            next(err);
-        });
-});
-
-router.post('/celebrities/:id', (req, res, next) => {
-    const { name, occupation, catchPhrase } = req.body;
-    Celebrity.findByIdAndUpdate(req.params.id, {
-        name,
-        occupation,
-        catchPhrase,
-    })
-        .then(() => {
-            res.redirect('/celebrities');
-        })
-        .catch((err) => {
-            next(err);
-        });
-});
-
 // Add celebrity
 router.post('/celebrities', (req, res) => {
     preventDefault();

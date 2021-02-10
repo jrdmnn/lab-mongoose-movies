@@ -8,7 +8,13 @@
             <p>Year: {{year}}</p>
             <p>Genre: {{genre}}</p>
             <p>Plot: {{plot}}</p>
-            <p>Cast: [{{cast}}]</p>
+            <p>Cast:
+                <ul>
+                    {{#each cast}}
+                        <li>{{this.name}} {{this.lastName}}</li>
+                    {{/each}}
+                </ul>
+            </p>
 
             <a href="/movies/{{_id}}/edit">Edit</a>
 
