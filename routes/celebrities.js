@@ -11,10 +11,9 @@ CRUD = Create, Read, Update, Delete
 */
 
 router.get('/celebrities', (req, res, next) => {
-  /* asking data from the Celebrity model 
-   find() to get all the books, with no parameter. 
-   get all the Collection with no P. or just the Celebrity that matches the query ( find({name: 'name' }))
-   find returns the whole collection or a query as an array */ 
+  /* find data from the Celebrity model 
+   find() to get all the collection, with no parameter. 
+    or just the Celebrity that matches the query ( find({name: 'name' })). find returns the whole collection or a query as an array */ 
   Celebrity.find().then(celebrityFromDB => {
     console.log(celebrityFromDB);
     /* Is render a handlebar method?
