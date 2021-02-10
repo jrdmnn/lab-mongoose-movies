@@ -49,7 +49,8 @@ router.get('/movies', (req, res, next) => {
 });
 
 router.get('/movies', (req, res, next) => {
-  Movies.find()
+  Movie.find()
+    .populate('cast')
     .then((movie) => {
       res.render('./movies/index', { movie });
     })
@@ -60,11 +61,15 @@ router.get('/movies', (req, res, next) => {
 
 
 router.get('/movies/new', (req, res)=>{
-  Celebrity.find().then(celebrities=> {res.render('./movies/moviesNew', {celebrities: celebrities})}  )
-
+  Celebrity.find() 
+  .then(celebritiesFromDB => {
+    res.render('movies/new', { celebrities: celebritiesFromDB})
+  })
+  .catch(err => {
+    console.log(err)
+  })
 })
-
-
+  
 router.post('/movies', (req, res) =>{
   const title = req.body.title
   const genre = req.body.genre
@@ -78,13 +83,6 @@ router.post('/movies', (req, res) =>{
 })
 
 //find whole movie array iterate and connect to celebs //iteration10
-
-
-
-
-
-
-
 
 
 module.exports = router

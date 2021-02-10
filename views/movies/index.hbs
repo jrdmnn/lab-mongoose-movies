@@ -4,4 +4,10 @@
 <p style="color:red; font-size:30px">{{this.title}}</p>
 <p>{{this.genre}}</p>
 <p>{{this.plot}}</p>
+
+
+{{#each cast}}
+<li>{{this.name}}</li>
+{{/each}}
+
 {{/each }}
