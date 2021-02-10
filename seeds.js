@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Celebrity = require('./models/Celebrity');
 
-mongoose.connect('mongodb://localhost/Celebs', {
+mongoose.connect('mongodb://localhost/Celebrity', {
   userNewUrlParser: true
 });
 
@@ -20,12 +20,23 @@ const celebrities = [
     name: "Zlatan Ibrahimovic",
     occupation: "Footballer",
     catchPhrase: "I am Zlatan"
+  },
+  {
+    name: "Caetano Veloso",
+    occupation: "Musician",
+    catchPhrase: "Everybody knows that our cities were built to be destroyed."
+  },
+  {
+    name: "Steve Jobs",
+    occupation: "Entrepreneur",
+    catchPhrase: "Think Different."
   }
+  
 ];
 
 Celebrity.insertMany(celebrities)
   .then(celebrities => {
-    console.log(`Success! Added ${celebrities.length} books to the database.`);
+    console.log(`Success! Added ${celebrities.length} celebrities to the database.`);
     mongoose.connection.close();
   })
   .catch(err => {

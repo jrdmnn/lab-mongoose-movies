@@ -27,6 +27,14 @@ app.locals.title = `${capitalized(projectName)}- Generated with IronGenerator`;
 // 👇 Start handling routes here
 const index = require("./routes/index");
 app.use("/", index);
+const celebs = require("./routes/celebrities");
+app.use("/", celebs);
+const addNew = require("./routes/new");
+app.use("/", addNew);
+const deleteCeleb = require("./routes/delete");
+app.use("/", deleteCeleb);
+const goneCeleb = require("./routes/gone");
+app.use("/", goneCeleb);
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
