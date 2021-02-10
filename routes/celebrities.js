@@ -10,6 +10,11 @@ router.get('/', (req, res) => {
 });
 
 
+router.get('/celebrities/new', (req, res) => {
+  res.render('celebrities/new')
+})
+
+
 router.get('/celebrities', (req, res) => {
   // get all the celebrities from the database -> find() returns all the documents
   Celebrity.find().then(celebritiesFromDB => {
