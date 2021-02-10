@@ -1,0 +1,12 @@
+<h1>This is the movies page</h1>
+{{#each moviesFromDB}}
+<h2> {{this.name}}</h2>
+<h3>{{this.genre}}</h3>
+<p>{{this.plot}}</p>
+ <ul>
+ {{#each cast}}
+   <li>Actors: {{this.name}}</li>
+ {{/each}}
+ </ul>
+{{/each}}
+<a href="/movies/new">Add a movie</a>
