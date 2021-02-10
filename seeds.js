@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const Celeb = require('../models/celebrity.js');
+// Just a test const Celeb = require('../models/celebrity.js');
 
 mongoose.connect("mongodb://localhost/lab-mongoose-movies", {
   useNewUrlParser: true,
@@ -8,6 +8,7 @@ mongoose.connect("mongodb://localhost/lab-mongoose-movies", {
   useCreateIndex: true
 })
 
+/*
 const tester = [
 { name: 'Daniel Day Lewis',
   occupation: 'Actor',
@@ -27,3 +28,4 @@ Celeb.insertMany(tester).then((celebData) => {
 }).catch((error)=> {
   console.log(error)
 })
+*/

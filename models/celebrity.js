@@ -2,9 +2,15 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const celebSchema = new Schema({
-  name: String,
-  occupation: String,
-  catchphrase: String,
+  name: {
+    type: String
+  },
+  occupation: {
+    type: String
+  },
+  catchphrase: {
+    type: String
+  }
 })
 
 const Celeb = mongoose.model("Celeb",celebSchema);

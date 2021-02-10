@@ -1,5 +1,5 @@
 <h1>Edit {{celeb.name}}<h1>
-  <form action="/celebrities" method="POST"> 
+  <form action="/celebrities/edit/{{celeb._id}}" method="POST"> 
 
   <label for="name">Name:</label>
   <input type="text" name="name" id="name" value="{{celeb.name}}">

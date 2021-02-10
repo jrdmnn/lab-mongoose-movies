@@ -3,6 +3,9 @@ const router = express.Router();
 const Celeb  = require("../models/celebrity.js");
 
 
+
+
+// Celeb Routes
 router.get('/celebrities', (req,res) => {
   Celeb.find().then((celebData)=> {
     console.log(celebData);
@@ -16,18 +19,8 @@ router.get('/celebrities/new', (req,res) => {
   res.render("celebrities/new.hbs")
 })
 
-router.get('/celebrities/:id', (req,res) => {
-    Celeb.findById(req.params.id).then((celebData)=> {
-      console.log(celebData);
-      res.render('celebrities/show.hbs', {targetCeleb: celebData});
-    }).catch((error)=>{
-      console.log(error);
-    })
-})
-
 
 router.post("/celebrities", (req,res)=> {
-
   Celeb.create({
     name: req.body.name,
     occupation: req.body.occupation,
@@ -64,11 +57,19 @@ router.post("/celebrities/edit/:id", (req,res)=> {
       catchphrase,
     } ).then((updatedCeleb)=>{
       console.log(updatedCeleb);
-        res.redirect(`celebrities/${updatedCeleb._id}`);
+        res.redirect(`/celebrities/${updatedCeleb._id}`);
     }).catch((error)=>{
       console.log(error);
     })
 })
 
+router.get('/celebrities/:id', (req,res) => {
+  Celeb.findById(req.params.id).then((celebData)=> {
+    console.log(celebData);
+    res.render('celebrities/show.hbs', {targetCeleb: celebData});
+  }).catch((error)=>{
+    console.log(error);
+  })
+})
 
 module.exports = router;
