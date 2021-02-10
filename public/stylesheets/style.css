@@ -92,3 +92,6 @@ input {
 option {
     height: 10rem;
 }
+ul > li {
+    list-style-type: none;
+}

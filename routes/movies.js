@@ -12,7 +12,7 @@ router.get('/movies', (req, res, next) => {
         })
         .catch((err) => {
             console.log(err);
-            next();
+            next(err);
         });
 });
 
@@ -56,7 +56,7 @@ router.post('/movies', (req, res) => {
         })
         .catch((err) => {
             console.log(err);
-            res.redirect(`/movies/new`, { cast });
+            res.render(`movies/new`, { cast });
         });
 });
 
@@ -68,6 +68,7 @@ router.get('/movies/:id/edit', (req, res, next) => {
                 res.render('movies/edit', { movie, cast });
             })
             .catch((err) => {
+                console.log(err);
                 next(err);
             });
     });
@@ -84,7 +85,7 @@ router.post('/movies/:id', (req, res, next) => {
         cast,
     })
         .then(() => {
-            res.redirect('/movies');
+            res.status(200).redirect('/movies/index');
         })
         .catch((err) => {
             next(err);

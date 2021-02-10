@@ -8,19 +8,19 @@ const movieSchema = new Schema({
     genre: [
         {
             type: String,
-            enum: [
-                'Comedy',
-                'Action',
-                'Crime',
-                'Drama',
-                'Thriller',
-                'Horror',
-                'Sci-fi',
-                'Biography',
-                'History',
-                'Western',
-                'Other',
-            ],
+            // enum: [
+            //     'Comedy',
+            //     'Action',
+            //     'Crime',
+            //     'Drama',
+            //     'Thriller',
+            //     'Horror',
+            //     'Sci-fi',
+            //     'Biography',
+            //     'History',
+            //     'Western',
+            //     'Other',
+            // ],
         },
     ],
     plot: {
