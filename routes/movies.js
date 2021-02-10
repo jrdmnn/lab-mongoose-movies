@@ -4,15 +4,15 @@ const Movie = require('../models/Movie')
 const Celebrity = require('../models/Celebrity')
 
 router.get("/movies", (req, res) => {
-  Movie.find().then(movieFDB => {
+  Movie.find().then(moviesFDB => {
     //console.log(celebsFDB)
-    res.render('movies/index.hbs', {movieFDB})
+    res.render('movies/index.hbs', {moviesFDB})
   })
 });
 
 router.get('/movies/new', (req, res) => {
 Celebrity.find().then(celebsFDB => {
-  console.log('FUCKTHIS', celebsFDB)
+  //console.log('FUCKTHIS', celebsFDB)
   res.render('movies/new.hbs', {celebList : celebsFDB})
   })
 });
