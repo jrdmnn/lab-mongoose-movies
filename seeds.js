@@ -36,3 +36,9 @@ const celebrity = [
  
 // Celebrity.create()or Celebrity.insertMany()
 
+Celebrity.insertMany(celebrities)
+  .then(celebrities => {
+    console.log(`Success!.`);
+
+  })
+  .catch(error => console.log(error));
