@@ -47,9 +47,9 @@ button {
     flex-direction: column;
     justify-content: space-evenly;
 }
-input {
+/* input {
     line-height: 2rem;
-}
+} */
 
 #delete-btn {
     width: 100%;
@@ -89,9 +89,9 @@ input {
 .result-card p {
     margin-top: -1%;
 }
-option {
+/* option {
     height: 10rem;
-}
+} */
 ul > li {
     list-style-type: none;
 }
