@@ -13,6 +13,12 @@ const celebritySchema = new Schema({
     catchPhrase: {
         type: String,
     },
+    // {
+    //     timestamps: {
+    //         createdAt: 'created_at',
+    //         updatedAt: 'updated_at',
+    //     }
+    // },
 });
 
 const Celebrity = model('Celebrity', celebritySchema);

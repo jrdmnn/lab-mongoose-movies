@@ -18,9 +18,9 @@
       <input type="text" name="plot" id="plot" value="">
     
       <label for="cast">Cast</label>
-      <select name="cast" id="cast">
+      <select name="cast" id="cast" multiple>
           {{#each cast}}
-                  <option value="{{this._id}}" selected >{{this.name}} {{this.lastName}}</option>
+                  <option value="{{this._id}}" >{{this.name}} {{this.lastName}}</option>
           {{/each}}
       </select>
        <button type="submit" >Add movie</button>

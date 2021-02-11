@@ -62,10 +62,22 @@ router.post('/movies', (req, res) => {
 
 // Update movie
 router.get('/movies/:id/edit', (req, res, next) => {
-    Celebrity.find().then((cast) => {
-        Movie.findById(req.params.id)
-            .then((movie) => {
-                res.render('movies/edit', { movie, cast });
+    Movie.findById(req.params.id).then((movie) => {
+        Celebrity.find()
+            .populate('cast')
+            .then((celebrities) => {
+                // let options = '';
+                // let selected = '';
+                // celebrities.forEach((actor) => {
+                //     selected = movie.cast
+                //         .map((el) => el._id)
+                //         .includes(actor._id)
+                //         ? ' selected'
+                //         : '';
+                //     options += `<option value="${actor._id}" ${selected}>${actor.name}</option>`;
+                // });
+                console.log('celebrities', celebrities);
+                res.render('movies/edit', { movie, celebrities });
             })
             .catch((err) => {
                 console.log(err);
