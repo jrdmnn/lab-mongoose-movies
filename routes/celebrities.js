@@ -48,7 +48,7 @@ router.get('/celebrities/:id', (req, res) => {
 
 router.get('/celebrities/:id/editCeleb', (req, res, next) => {
   Celebrity.findById(req.params.id).then(celebrityfromDB => {
-    res.render('celebrities/editCeleb', {celebrity: celebrityfromDB}) 
+    res.render('celebrities/editCeleb', {celebritiesList: celebrityfromDB}) 
   }).catch(err => {
     console.log('Error while getting a celebrity by ID: ', err);
     next();

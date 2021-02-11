@@ -2,12 +2,9 @@ const router = require("express").Router();
 
 /* GET home page */
 router.get("/", (req, res, next) => {
-  res.render("index");
+  res.render("index.hbs");
 });
 
-router.get("/index", (req, res, next) => {
-  res.render("index");
-});
 
 
 module.exports = router;
