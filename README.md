@@ -115,7 +115,7 @@ Here's the route we will be using:
 
 ## Iteration #3: The Celebrity Details Page
 
-We've got a list of celebrities that displays each of their `name`, but what if we want to see the other details? In our `views/celebrities/index.hbs` view with our list of celebrities, let's add links so that the user can click on any celebrity's name, and go to a page specifically for that celebrity.  On this page, we will show all the details of that celebrity.
+We've got a list of celebritry.
 
 Here's the route we will be using:
 
