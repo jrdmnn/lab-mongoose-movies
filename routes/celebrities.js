@@ -11,9 +11,7 @@ router.get('/celebrities', (req, res) => {
 })
 
 router.post('/celebrities', (req,res) => {
-  const name = req.body.name;
-  const occupation = req.body.occupation;
-  const catchPhrase = req.body.catchPhrase;
+  const { name, occupation, catchPhrase } = req.body;
   console.log(name, occupation, catchPhrase);
   Celebrity.create({
     name: name,
@@ -30,13 +28,13 @@ router.get('/celebrities/new', (req, res) => {
   res.render('celebrities/new');
 })
 
-router.get('/celebrities/:id/delete', (req, res) => {
+router.get('/celebrities/:id/delete', (req, res, next) => {
   const celebrityId = req.params.id;
   console.log(celebrityId)
   Celebrity.findByIdAndDelete(celebrityId)
   .then(() => {
-    res.redirect('celebrities')
-  }).catch(err => console.log(err))
+    res.redirect('/celebrities')
+  }).catch(err => next(err))
 })
 
 router.get('/celebrities/:id/edit', (req, res) => {
