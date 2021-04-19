@@ -60,15 +60,41 @@ router.get('/celebrities/:id', (req, res, next) => {
 });
 
 router.post('/celebrities/:id/delete', (req, res, next) => {
-  Celebrity.findByIdAndRemove(req.params.id)
+  const celebId = req.params.id;
+  Celebrity.findByIdAndRemove(celebId)
     .then(res.redirect('/celebrities'))
     .catch(err => {
       next(err)
     });
 })
 
+router.get('/celebrities/:id/edit', (req, res, next) => {
+  celebId = req.params.id; 
+  Celebrity.findById(celebId)
+    .then(celeb => {
+      res.render('celebrities/edit', {
+        celebInfo: celeb
+      })
+    })
+    .catch(err => next(err));
+})
 
-
-
+router.post('/celebrities/:id/edit', (req, res, next)=> {
+  const celebId = req.params.id;
+  const {
+    name,
+    occupation,
+    catchPhrase
+  } = req.body;
+  Celebrity.findByIdAndUpdate(celebId, {
+    name : name,
+    occupation : occupation,
+    catchPhrase : catchPhrase
+  })
+  .then(res.redirect('/celebrities'))
+    .catch(err => {
+      next(err)
+    });
+})
 
 module.exports = router;
