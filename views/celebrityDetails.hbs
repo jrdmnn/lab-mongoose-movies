@@ -1,3 +1,4 @@
+
 {{#with celebrity}}
 
 <h1>{{name}}</h1>
@@ -10,21 +11,23 @@
     <li>  <h3>{{occupation}}</h3></li>
     <li>  <h3>{{catchPhrase}}</h3></li>
   </ul>
-<div class="container-row button-container">
-  <a href="/celebrities">
-<button>Take me back </button>
-</a>
-<a href="/celebrities/edit/{{_id}}">
-<button>Edit Celebrity</button>
-</a>
-<a href="/celebrities/delete/{{_id}}">
-<button>Delete Celebrity</button>
-</a>
+
+  <div class="container-row button-container">
+    
+    <a href="/celebrities">
+      <button>Take me back </button>
+    </a>
+
+    <a href="/celebrities/edit/{{_id}}">
+     <button>Edit Celebrity</button>
+    </a>
+
+    <a href="/celebrities/delete/{{_id}}">
+      <button>Delete Celebrity</button>
+    </a>
+
+  </div>
+
 </div>
-
-
-</div>
-
-
 
 {{/with}}
