@@ -1,0 +1,11 @@
+<h2> Celebrities!
+  {{#each celebrities}}
+  <h3>{{name}}</h3>
+  <div>
+    <a href="/celebrities/{{_id}}"> View Celebrities </a>
+  </div>
+  <div>
+    {{!-- <a href="/celebrities/new"> Add celebrities </a> --}}
+  </div>
+  {{/each}}
+</h2>
