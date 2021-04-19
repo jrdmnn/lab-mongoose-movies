@@ -1,0 +1,10 @@
+<h2>celebrities/index.hbs</h2>
+
+{{#each celebrity}}
+<ul>
+  <li>
+    <a href="celebrity/{{_id}}">{{name}}</a>
+    <a href="/celebrity/{{_id}}/delete">Delete</a>
+
+</ul>
+{{/each}}
