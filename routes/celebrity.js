@@ -9,16 +9,24 @@ router.get('/celebrities', (req, res, next) => {
   res.render('celebrities');
 });
 
-router.get('/celebrity/new', (req, res, next) => {
-  res.render('celebritynew');
+router.get('/celebrities/new', (req, res, next) => {
+  res.render('celebrities/new');
 });
 
-router.get('/celebrity/:id', (req, res, next) => {
-  res.render('celebrity');
+router.post('/celebrities/new', (req, res, next) => {
+  res.redirect(`/celebrities/${_id}`);
 });
 
-router.get('/celebrity/edit/:id', (req, res, next) => {
-  res.render('celebrityedit');
+router.get('/celebrities/:id', (req, res, next) => {
+  res.render('celebrities/show');
+});
+
+router.get('/celebrity/:id/edit', (req, res, next) => {
+  res.render('celebrities/edit');
+});
+
+router.post('/celebrity/:id/edit', (req, res, next) => {
+  res.redirect(`/celebrity/${_id}`);
 });
 
 module.exports = router;
