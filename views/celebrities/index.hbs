@@ -1,0 +1,14 @@
+<h2>✨ A list of some famous and not so famous people ✨</h2>
+
+{{#each celebrities}}
+<div class="celebrity-item">
+  <a href="/celebrities/{{_id}}" class="celebrity-name">
+    <p>{{name}}</p>
+  </a>
+  <form action="/celebrities/{{_id}}/delete" method="POST" class="delete">
+    <button type="submit">Delete</button>
+  </form>
+</div>
+{{/each}}
+
+<a href="/celebrities/new" class="add">Add a celebrity</a>
