@@ -13,6 +13,29 @@ router.get('/celebrities', (req,res,next)=>{
   })
 });
 
+router.post('/celebrities', (req,res)=>{
+  const {name, occupation, catchPhrase} = req.body; 
+  Celebrity.create({
+    name : name,
+    occupation : occupation, 
+    catchPhrase : catchPhrase
+  })
+  .then(celeb=>{
+    res.redirect(`/celebrities`)
+  })
+  .catch(err=>{
+    console.log(err);
+    res.redirect('/celebrities/new')
+  })
+});
+
+router.get('/celebrities/new',(req,res)=>{
+  console.log("opening new page");
+  res.render('celebrities/new');
+});
+
+
+
 router.get('/celebrities/:id',(req,res,next)=>{
   console.log(req.params.id);
   const celebId = req.params.id;
@@ -24,6 +47,10 @@ router.get('/celebrities/:id',(req,res,next)=>{
   .catch(err=>{
     next(err);
   })  
-})
+});
+
+
+
+
 
 module.exports = router; 
