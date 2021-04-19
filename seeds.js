@@ -27,7 +27,8 @@ const initialCelebritiesData = [
 Celebrity.insertMany(initialCelebritiesData)
   .then((insertedData) => {
     console.log(`Success! Added ${insertedData.length} to the database`);
-    mongoose.connection.close();
+    // closing generating error when done using require('./db');
+    // mongoose.connection.close();
   })
   .catch((err) => {
     console.log(err);
