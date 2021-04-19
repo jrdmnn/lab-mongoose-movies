@@ -1,0 +1,20 @@
+<h1>All Celebrities in the DB</h1>
+<hr>
+<div class="container-row celeb-container">
+  {{#each celebrities}}
+      <figure>
+        <a href="/celebrities/detail/{{_id}}">
+        <img class="celebrity-photo" src="{{imageURL}}" alt="{{name}}">
+        </a>
+        <figcaption>
+          {{name}}
+        </figcaption>
+      </figure>
+  {{/each}}
+</div>
+
+<div class="container-row button-container">
+  <a href="/celebrities/add">
+    <button>Add Celebrity!</button>
+  </a>
+</div>

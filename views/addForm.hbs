@@ -1,0 +1,24 @@
+
+  <form class="container-col form-container" action="/celebrities" method="post">
+    {{#if error}}
+      <h3 class="error">
+    {{error_message}}: </h3>
+      <p class="error">{{error}}</p>
+    {{/if}}
+
+    <label for="name">Name:</label>
+    <input type="text" name="name" id="name">
+ 
+     <label for="occupation">Occupation:</label>
+    <input type="text" name="occupation" id="occupation">
+
+    <label for="catchPhrase">Catch Phrase:</label>
+    <input type="text" name="catchPhrase" id="catchPhrase">
+
+    <label for="imageURL">Image URL:</label>
+    <input type="text" name="imageURL" id="imageURL">
+
+    <div class="container-row container-button">
+      <button type="submit">Add Celebrity!!</button>
+    </div>
+  </form>

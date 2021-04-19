@@ -12,6 +12,10 @@ const celebritySchema = mongoose.Schema({
   catchPhrase: {
     type: String,
   },
+  imageURL: {
+    type: String,
+    default: "https://picsum.photos/600/450",
+  }
 })
 
 const Celebrity = mongoose.model('Celebrity', celebritySchema);
