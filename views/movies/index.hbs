@@ -1,18 +1,17 @@
 <h1>All The Movies</h1>
-
-
 {{#each moviesList}}
-  <p>
-    {{title}}
-  </p>
-  <p>{{genre}}</p>
-  <p>{{plot}}</p>
-
-{{#each cast}}
-<ul>
-    <li>{{name}}</li>
-</ul>
-{{/each}}
-
+  <div class="item">
+    <h2>
+      {{title}}
+    </h2>
+    <p>{{genre}}</p>
+    <p>{{plot}}</p> 
+  {{#each cast}}
+    <ul>
+        <li>{{name}}</li>
+    </ul>
+  {{/each}}
+  <a href="/movies/edit/{{_id}}">Edit movie</a>
+</div>
 {{/each}}
 <a href="/movies/newMovie">Add a movie</a>

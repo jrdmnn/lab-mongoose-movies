@@ -31,4 +31,4 @@ Celebrity.insertMany(celebrities)
   })
   .catch(err => {
     console.log(err)
-  })
+  });

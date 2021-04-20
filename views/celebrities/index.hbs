@@ -1,17 +1,20 @@
 <h2>Celebrities</h2>
-
   {{#each celebList}}
-  <p><a href="/celebrities/{{_id}}">{{name}}</a></p>
-  <form action="/celebrities/{{_id}}" method="POST">
-  <button type="submit">Delete</button>
-  </form>
-  <a href="/celebrities/edit/{{_id}}">Edit</a>
-  {{/each}}
-  <div>
-    <a href="/celebrities/new">Add a new celebrity</a>
-  </div>
-  <div>
-    <a href='/movies'>All the Movies</a>
-  </div>
+    <div class="item">
+      <p>
+        <a href="/celebrities/{{_id}}">{{name}}</a>
+      </p>
+      <form action="/celebrities/{{_id}}" method="POST">
+      <button type="submit">Delete</button>
+      </form>
+      <a href="/celebrities/edit/{{_id}}">Edit</a>
+    </div>
+  {{/each}}  
+<div>
+  <a href="/celebrities/new">Add a new celebrity</a>
+</div>
+<div>
+  <a href='/movies'>All the Movies</a>
+</div>
 
 

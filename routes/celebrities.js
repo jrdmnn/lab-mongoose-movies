@@ -37,7 +37,6 @@ router.get('/celebrities/:id', (req, res, next) => {
   Celebrity.findById(req.params.id)
     .then(celeb => {
       res.render('celebrities/show', { celebData: celeb })
-      
     })
     .catch(err => {
       next(err);
@@ -47,12 +46,12 @@ router.get('/celebrities/:id', (req, res, next) => {
 router.get('/celebrities/edit/:id', (req, res, next) => {
   Celebrity.findById(req.params.id)
     .then(celeb => {
-      res.render('celebrities/edit', {celebData: celeb})
+      res.render('celebrities/edit', { celebData: celeb })
     })
     .catch(err => {
       next(err);
     })
-});
+})
 
 router.post('/celebrities/:id', (req, res, next) => {
   Celebrity.findByIdAndDelete(req.params.id)
@@ -66,7 +65,7 @@ router.post('/celebrities/:id', (req, res, next) => {
 
 router.post('/celebrities/edit/:id', (req, res) => {
   const celebId = req.params.id;
-  const {name, occupation, catchPhrase} = req.body;
+  const { name, occupation, catchPhrase } = req.body;
   Celebrity.findByIdAndUpdate(celebId, {
     name: name,
     occupation: occupation,
@@ -79,7 +78,6 @@ router.post('/celebrities/edit/:id', (req, res) => {
     .catch(err => {
       next(err);
     })
-})
+});
 
-
-module.exports = router
+module.exports = router;
