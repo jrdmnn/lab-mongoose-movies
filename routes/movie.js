@@ -14,15 +14,22 @@ router.get('/movies', (req, res, next) => {
 });
 
 router.get('/movies/new', (req, res, next) => {
-  res.render('movies/new');
+  Celebrity.find()
+    .then((celebrities) => {
+      console.log('/movies/new', celebrities);
+      res.render('movies/new', { celebrities });
+    })
+    .catch((err) => {
+      next(err);
+    });
 });
 router.post('/movies/new', (req, res, next) => {
-  //const { title, genre, plot, cast } = req.body;
-  const { title, genre, plot } = req.body;
+  const { title, genre, plot, cast } = req.body;
   Movie.create({
     title,
     genre,
     plot,
+    cast,
   })
     .then((movie) => {
       console.log('/movies/new POST', movie);
