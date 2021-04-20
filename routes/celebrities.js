@@ -66,7 +66,7 @@ router.post('/celebrities/:id', (req, res, next) => {
 router.post('/celebrities/edit/:id', (req, res) => {
   const celebId = req.params.id;
   const {name, occupation, catchPhrase} = req.body;
-  Celebrity.findOneAndUpdate(celebId, {
+  Celebrity.findByIdAndUpdate(celebId, {
     name: name,
     occupation: occupation,
     catchPhrase: catchPhrase
