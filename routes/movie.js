@@ -24,7 +24,10 @@ router.get('/movies/new', (req, res, next) => {
     });
 });
 router.post('/movies/new', (req, res, next) => {
-  const { title, genre, plot, cast } = req.body;
+  const { title, genre, plot, 'cast[]': cast } = req.body;
+  // can also be solved by setting name to cast only in form,
+  // but then it is not compatible with other languages
+  // this way both features are kept
   Movie.create({
     title,
     genre,
