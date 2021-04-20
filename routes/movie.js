@@ -50,12 +50,16 @@ router.get('/movies/:id', (req, res, next) => {
 });
 
 router.get('/movies/:id/edit', (req, res, next) => {
-  Movie.findById(req.params.id)
-    .populate('cast')
-    .then((movie) => {
-      console.log('/movies/:id/edit', movie);
-      res.render('movies/edit', { movie });
-    });
+  Promise.all([
+    Movie.findById(req.params.id)
+      .populate('cast')
+      .then((movie) => movie),
+    Celebrity.find().then((celebrities) => celebrities),
+  ]).then((promiseArray) => {
+    console.log('/movies/:id/edit', promiseArray);
+    //res.render('movies/edit', { movie });
+    res.render('movies/new');
+  });
 });
 
 router.post('/movies/:id/edit', (req, res, next) => {
