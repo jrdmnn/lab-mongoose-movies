@@ -15,7 +15,8 @@ router.get('/celebrities/new', (req, res, next) => {
   res.render('celebrities/new')
 })
 
-router.post('/celebrities', (req, res) => {
+
+router.post('/celebrities', (req, res, next) => {
   const { name, occupation, catchPhrase } = req.body;
   Celebrity.create({
     name: name,
