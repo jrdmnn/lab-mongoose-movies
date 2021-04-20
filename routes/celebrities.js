@@ -60,21 +60,21 @@ router.get('/celebrities/:id/edit', (req, res, next) => {
   const celebId = req.params.id;
   Celebrity.findById(celebId)
     .then(celeb => {
-      // console.log(bookFromDB);
       res.render('celebrities/edit', { edit: celeb });
     })
 });
 
-router.post('/celebrities/:id', (req, res, next) => {
+router.post('/celebrities/:id/edit', (req, res, next) => {
   const celebId = req.params.id;
   const { name, occupation, catchPhrase } = req.body;
+  console.log(req.body)
   Celebrity.findByIdAndUpdate(celebId, {
     name: name,
     occupation: occupation,
     catchPhrase: catchPhrase,
   })
     .then(celeb => {
-      res.redirect(`/celebrities/${celeb}`)
+      res.redirect(`/celebrities`)
     })
     .catch(err => {
       next(err);
