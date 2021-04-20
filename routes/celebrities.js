@@ -41,20 +41,6 @@ router.get('/:id/edit', (req, res, next) => {
         });
 });
 
-router.post('/:id', (req, res, next) => {
-    console.log(req.body);
-    const { name, occupation, catchPhrase } = req.body;
-    const celebId = req.params.id;
-
-    Celeb.findByIdAndUpdate(celebId, { name, occupation, catchPhrase })
-        .then(() => {
-            res.redirect('/celebrities');
-        })
-        .catch(err => {
-            next(err);
-        });
-});
-
 router.post('/new', (req, res, next) => {
     console.log(req.body);
     const { name, occupation, catchPhrase } = req.body
@@ -66,6 +52,20 @@ router.post('/new', (req, res, next) => {
     })
         .then(celebFromDB => {
             console.log(`This celebrity was just created ${celebFromDB}`);
+            res.redirect('/celebrities');
+        })
+        .catch(err => {
+            next(err);
+        });
+});
+
+router.post('/:id', (req, res, next) => {
+    console.log(req.body);
+    const { name, occupation, catchPhrase } = req.body;
+    const celebId = req.params.id;
+
+    Celeb.findByIdAndUpdate(celebId, { name, occupation, catchPhrase })
+        .then(() => {
             res.redirect('/celebrities');
         })
         .catch(err => {
