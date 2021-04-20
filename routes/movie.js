@@ -3,23 +3,80 @@ const Movie = require('../models/Movie');
 const Celebrity = require('../models/Celebrity');
 
 router.get('/movies', (req, res, next) => {
-  res.render('movies/');
+  Movie.find()
+    .then((movies) => {
+      console.log('/movies', movies);
+      res.render('movies', { movies });
+    })
+    .catch((err) => {
+      next(err);
+    });
 });
 
 router.get('/movies/new', (req, res, next) => {
   res.render('movies/new');
 });
+router.post('/movies/new', (req, res, next) => {
+  //const { title, genre, plot, cast } = req.body;
+  const { title, genre, plot } = req.body;
+  Movie.create({
+    title,
+    genre,
+    plot,
+  })
+    .then((movie) => {
+      console.log('/movies/new POST', movie);
+      res.redirect(`/movies/${movie._id}`);
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
 
 router.get('/movies/:id', (req, res, next) => {
-  res.render('movies/show');
+  Movie.findById(req.params.id)
+    .populate('cast')
+    .then((movie) => {
+      console.log('/movies/:id', movie);
+      res.render('movies/show', { movie });
+    });
 });
 
 router.get('/movies/:id/edit', (req, res, next) => {
-  res.render('movies/edit');
+  Movie.findById(req.params.id)
+    .populate('cast')
+    .then((movie) => {
+      console.log('/movies/:id/edit', movie);
+      res.render('movies/edit', { movie });
+    });
+});
+
+router.post('/movies/:id/edit', (req, res, next) => {
+  //const { title, genre, plot, cast } = req.body;
+  const { title, genre, plot } = req.body;
+  Movie.findByIdAndUpdate(req.params.id, {
+    title,
+    genre,
+    plot,
+  })
+    .then((movie) => {
+      console.log('/movies/:id/edit POST', movie);
+      res.redirect(`/movies/${req.params.id}`);
+    })
+    .catch((err) => {
+      next(err);
+    });
 });
 
 router.get('/movies/:id/delete', (req, res, next) => {
-  // just action
+  Movie.findByIdAndDelete(req.params.id)
+    .then(() => {
+      console.log('/movies/:id/delete POST', req.params.id);
+      res.redirect(`/movies`);
+    })
+    .catch((err) => {
+      next(err);
+    });
 });
 
 module.exports = router;
