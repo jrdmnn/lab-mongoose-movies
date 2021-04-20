@@ -58,25 +58,21 @@ router.get('/movies/:id/edit', (req, res, next) => {
     Celebrity.find().then((celebrities) => celebrities),
   ]).then(([movie, celebrities]) => {
     let celebritiesSelected = celebrities.map((celebrity) => {
-      //{...celebrity} does not work here!!!
+      //{...celebrity} does not work here!!! too many information gets passed
       let sel = movie.cast.includes(celebrity._id);
       return { _id: celebrity._id, name: celebrity.name, selected: sel };
     });
-    console.log('/movies/:id/edit', movie, celebrities);
-    console.log('DDDDD', movie.cast);
-    console.log('WWWWW', celebritiesSelected);
     res.render('movies/edit', { movie, celebrities: celebritiesSelected });
-    //res.render('movies/new');
   });
 });
 
 router.post('/movies/:id/edit', (req, res, next) => {
-  //const { title, genre, plot, cast } = req.body;
-  const { title, genre, plot } = req.body;
+  const { title, genre, plot, 'cast[]': cast } = req.body;
   Movie.findByIdAndUpdate(req.params.id, {
     title,
     genre,
     plot,
+    cast,
   })
     .then((movie) => {
       console.log('/movies/:id/edit POST', movie);

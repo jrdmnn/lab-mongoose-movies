@@ -2,6 +2,21 @@
 <h1>{{title}}</h1>
 <p>genre: {{genre}}</p>
 <p>plot: {{plot}}</p>
+
+<p>cast: </p>
+
+{{#if cast}} checked
+{{#each cast}}
+<p> {{name}} </p>
+{{/each}}
+
+{{else}}
+<p> none assigned </p>
+{{/if}}
+
+
+
+
 <a href="/movies/{{_id}}/edit">Edit</a>
 <a href="/movies/{{_id}}/delete">Delete</a>
 {{/with}}
