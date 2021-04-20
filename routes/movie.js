@@ -54,14 +54,19 @@ router.get('/movies/:id', (req, res, next) => {
 
 router.get('/movies/:id/edit', (req, res, next) => {
   Promise.all([
-    Movie.findById(req.params.id)
-      .populate('cast')
-      .then((movie) => movie),
+    Movie.findById(req.params.id).then((movie) => movie),
     Celebrity.find().then((celebrities) => celebrities),
-  ]).then((promiseArray) => {
-    console.log('/movies/:id/edit', promiseArray);
-    //res.render('movies/edit', { movie });
-    res.render('movies/new');
+  ]).then(([movie, celebrities]) => {
+    let celebritiesSelected = celebrities.map((celebrity) => {
+      //{...celebrity} does not work here!!!
+      let sel = movie.cast.includes(celebrity._id);
+      return { _id: celebrity._id, name: celebrity.name, selected: sel };
+    });
+    console.log('/movies/:id/edit', movie, celebrities);
+    console.log('DDDDD', movie.cast);
+    console.log('WWWWW', celebritiesSelected);
+    res.render('movies/edit', { movie, celebrities: celebritiesSelected });
+    //res.render('movies/new');
   });
 });
 
