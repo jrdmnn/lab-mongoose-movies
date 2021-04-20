@@ -1,0 +1,13 @@
+<h2>Add a new movie</h2>
+<form action="/movies" method="POST">
+  {{!-- id is for the label, name is for the form that will be send to the backend --}}
+  <input type="text" name="title" placeholder="Title">
+  <input type="text" name="genre" placeholder="Genre">
+  <input type="text" name="plot" placeholder="Plot">
+  <select name="cast" multiple>
+    {{#each addCast}}
+    <option value="{{this._id}}">{{this.name}}</option>
+    {{/each}}
+  </select>
+  <button type="submit">Add Me!</button>
+</form>

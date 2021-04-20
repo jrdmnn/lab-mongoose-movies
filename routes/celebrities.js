@@ -6,7 +6,6 @@ const Celebrity = require('../models/Celebrity');
 router.get('/celebrities', (req, res, next) => {
   Celebrity.find()
   .then(celebrity => {
-    //console.log(celebrity);
     res.render('celebrities', {celebrity});
   })
   .catch(err => {
@@ -18,7 +17,7 @@ router.get('/celebrities/new', (req, res) => {
   res.render('new')
  })
 
-router.post('/celebrities', (req, res) =>{
+router.post('/celebrities', (req, res, next) =>{
   console.log(req.body);
   const {name, occupation, catchPhrase} = req.body;
   Celebrity.create({
@@ -29,15 +28,19 @@ router.post('/celebrities', (req, res) =>{
   .then(newCeleb => {
     res.redirect(`/celebrities/${newCeleb._id}`);
   })
+  .catch(err => {
+    next(err)
+  })
 })
 
 /////////////////// Deleting a celebrity /////////////////////////////
 router.get('/celebrities/delete/:id', (req, res, next) => {
-  Celebrity.findByIdAndDelete(req.params.id).
-  then(() => {
+  Celebrity.findByIdAndDelete(req.params.id)
+  .then(() => {
     res.redirect('/celebrities');
   })
-  
+  .catch(err =>
+    next(err))
 })
 
 /////////////////// Editing a celebrity /////////////////////////////

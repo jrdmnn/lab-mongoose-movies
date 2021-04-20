@@ -1,0 +1,14 @@
+{{#with movieDetails}}
+  <h1>{{title}}</h1>
+  <h3>{{genre}}</h3>
+  <p>{{plot}}</p>
+  <div>Acting celebrities:
+    <ul>
+      {{#each cast}}
+          <li>{{name}}</li>
+      {{/each}}
+    </ul>
+  </div>  
+  <a href="/movies/edit/{{_id}}">Edit movie</a>
+{{/with}}
+
