@@ -50,15 +50,38 @@ router.post("/celebrities", (req, res) => {
     });
 });
 
-
-
-router.post("/celebrities/:id/delete", (req, res, next) => {
-  
-  const celebrityId= req.params.id;
-
-  Celebrity.findByIdAndRemove(celebrityId)
+router.post("/celebrities/:id", (req, res, next) => {
+  console.log(req.body);
+  let { name, occupation, catchPhrase } = req.body;
+  Celebrity.findByIdAndUpdate(req.params.id, {
+    name: name,
+    occupation: occupation,
+    catchPhrase: catchPhrase,
+  })
     .then(() => {
       res.redirect("/celebrities");
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
+
+router.post("/celebrities/:id/delete", (req, res, next) => {
+  console.log("Hi , Cintia !", req.params.id);
+  Celebrity.findOneAndDelete({ _id: req.params.id })
+    .then(() => {
+      res.redirect("/celebrities");
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
+
+router.get("/celebrities/:id/edit", (req, res, next) => {
+  Celebrity.findById(req.params.id)
+
+    .then((celebrity) => {
+      res.render("celebrities/edit", { celebrity });
     })
     .catch((err) => {
       next(err);

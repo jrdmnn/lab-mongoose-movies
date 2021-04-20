@@ -1,6 +1,7 @@
-<h2> Celebrities!
+<h2> Celebrities!</h2>
+
   {{#each celebrities}}
-  <h3>{{name}}</h3>
+  <h3>{{this.name}}</h3>
   <div>
     <a href="/celebrities/{{_id}}"> View Celebrities </a>
   </div>
@@ -8,8 +9,9 @@
     <a href="/celebrities/new"> Add celebrities </a>
   </div>
   <div>
-      <form action="/celebrities/{{id}}/delete" method="POST">
-        <button type="submit">Delete celebrity</button>
+      <form action="/celebrities/{{this._id}}/delete" method="POST">
+      <button type="submit">Delete celebrity</button>
+      <a href="/celebrities/{{_id}}/edit">Edit</a>
   </div>
-  {{/each}}
-</h2>
+{{/each}}
+
