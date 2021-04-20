@@ -3,19 +3,21 @@
 <hr>
 <div class="container-row celeb-container">
   {{#each celebrities}}
+
       <figure>
-        <a href="/celebrities/detail/{{_id}}">
+        <a href="/celebrities/{{_id}}">
         <img class="celebrity-photo" src="{{imageURL}}" alt="{{name}}">
         </a>
         <figcaption>
           {{name}}
         </figcaption>
       </figure>
+      
   {{/each}}
 </div>
 
 <div class="container-row button-container">
-  <a href="/celebrities/add">
+  <a href="/celebrities/new">
     <button>Add Celebrity!</button>
   </a>
 </div>

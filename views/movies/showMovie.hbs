@@ -1,0 +1,52 @@
+
+{{#with movie}}
+
+  <h1>{{title}}</h1>
+
+<div class="container-col">
+  <h2>CAST:</h2>
+
+  <div class="container-row celeb-container">
+
+      {{#each cast}}
+          <figure>
+
+              <a href="/celebrities/{{this._id}}">
+                <img class="celebrity-photo" src="{{this.imageURL}}" alt="{{this.name}}">
+              </a>
+
+              <figcaption>
+                {{this.name}}
+              </figcaption>
+
+          </figure>
+
+      {{/each}}
+
+  </div>
+
+  <h2>Plot: </h2>
+  <p>{{plot}}</p>
+
+  <h2>Genre: </h2>
+  <p>{{genre}}</p>
+
+  <div class="container-row container-buttons">
+        
+    <a href="/movies">
+      <button>Take me back</button>
+    </a>
+
+    <a href="/movies/{{_id}}/edit">
+     <button>Edit Movie</button>
+    </a>
+
+    <a href="/movies/{{_id}}/delete">
+      <button>Delete Movie</button>
+    </a>
+
+  </div>
+
+</div>
+
+{{/with}}

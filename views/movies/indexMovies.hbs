@@ -1,0 +1,27 @@
+
+<h1>Movies</h1>
+<hr>
+<div class="container-col">
+
+  {{#if movies}}
+    {{#each movies}}
+
+      <a href="/movies/{{_id}}">
+        <h2>{{title}}</h2>
+      </a>
+
+    {{/each}}
+
+  {{else}}
+
+    <p>No movies yet!</p>
+
+  {{/if}}
+</div>
+
+<div class="container-row button-container">
+  <a href="/movies/new">
+    <button>Add Movie!</button>
+  </a>
+</div>
+

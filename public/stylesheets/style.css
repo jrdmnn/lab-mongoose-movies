@@ -2,6 +2,8 @@ body {
     margin: 0;
     padding: 50px;
     font: 16px "Roboto", Helvetica, Arial, sans-serif;
+    color: #00b7ff;
+    text-align: center;
 }
 
 a,
@@ -28,6 +30,11 @@ button {
     border: 0px;
     font-size: 1.2em;
     cursor: pointer;
+}
+
+.btn-danger {
+    background: #dc3545;
+    color: white;
 }
 
 .container-col {
