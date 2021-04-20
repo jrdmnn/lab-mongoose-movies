@@ -1,0 +1,14 @@
+{{!-- In the views/celebrities/show.hbs view file:
+Add an <h2> for the page's heading.
+Display tags with the celebrity's name, occupation and catchPhrase --}}
+
+<h2>Celebrity Details</h2>
+
+{{#with celebrity}}
+
+<p>Name: {{name}}</p>
+<p>Occupation: {{occupation}}</p>
+<p>Catchphrase: {{catchphrase}}</p>
+<p><a href="/celebrities/{{_id}}/edit">Edit {{name}}</a></p>
+
+{{/with}}

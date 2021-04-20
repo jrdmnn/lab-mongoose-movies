@@ -1,0 +1,30 @@
+<h2>Movies List</h2>
+<p><a href="/movies/new">Add a Movie</a></p>
+
+{{#each movies}}
+<div id="movie-list">
+
+  <h3>{{title}}</h3>
+  <p>Genre: {{genre}}</p>
+  <p>Plot: {{plot}}</p>
+
+  {{#if cast}}
+    <ul>
+      <h4>Cast</h4>
+      {{#each cast}}
+        <li>{{name}}</li>
+      {{/each}}
+    </ul>
+    {{else}}
+      <p>This movie has no cast 🤷🏻‍♂️</p>
+  {{/if}}
+
+  <p><a href="/movies/{{_id}}/edit">Edit {{title}}</a></p>
+
+  <form action="/movies/{{_id}}/delete" method="POST">
+    <button type="submit">Delete {{title}}</button>
+  </form>
+
+</div>
+{{/each}}
+
