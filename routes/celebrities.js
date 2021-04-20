@@ -16,8 +16,6 @@ router.get('/new', (req, res) => {
     res.render('celebrities/celebForm');
 });
 
-
-
 router.get('/:id', (req, res, next) => {
     console.log(req.params.id);
     const celebId = req.params.id;
@@ -32,6 +30,30 @@ router.get('/:id', (req, res, next) => {
         });
 });
 
+router.get('/:id/edit', (req, res, next) => {
+    const celebId = req.params.id;
+    Celeb.findById(celebId)
+        .then((celeb) => {
+            res.render('celebrities/edit.hbs', { celeb });
+        })
+        .catch(err => {
+            next(err);
+        });
+});
+
+router.post('/:id', (req, res, next) => {
+    console.log(req.body);
+    const { name, occupation, catchPhrase } = req.body;
+    const celebId = req.params.id;
+
+    Celeb.findByIdAndUpdate(celebId, { name, occupation, catchPhrase })
+        .then(() => {
+            res.redirect('/celebrities');
+        })
+        .catch(err => {
+            next(err);
+        });
+});
 
 router.post('/new', (req, res, next) => {
     console.log(req.body);
@@ -63,21 +85,5 @@ router.post('/:id/delete', (req, res, next) => {
             next(err);
         });
 });
-
-router.get('/:id/edit', (req, res, next) => {
-    console.log('hello', req.params.id);
-    const celebId = req.params.id;
-    Celebrity.findById(celebId)
-        .then((celeb) => {
-            res.render('celebrities/edit.hbs', { celeb });
-        })
-        .catch(err => {
-            next(err);
-        });
-});
-
-
-
-
 
 module.exports = router;
