@@ -16,6 +16,23 @@ router.get('/new', (req, res) => {
     res.render('celebrities/celebForm');
 });
 
+
+
+router.get('/:id', (req, res, next) => {
+    console.log(req.params.id);
+    const celebId = req.params.id;
+
+    Celeb.findById(celebId)
+        .then(celeb => {
+            console.log(celeb);
+            res.render('celebrities/show', { celebDetails: celeb });
+        })
+        .catch(err => {
+            next(err);
+        });
+});
+
+
 router.post('/new', (req, res, next) => {
     console.log(req.body);
     const { name, occupation, catchPhrase } = req.body
@@ -27,7 +44,7 @@ router.post('/new', (req, res, next) => {
     })
         .then(celebFromDB => {
             console.log(`This celebrity was just created ${celebFromDB}`);
-            res.redirect(`/celebrities/${celebFromDB._id}`);
+            res.redirect('/celebrities');
         })
         .catch(err => {
             next(err);
@@ -47,30 +64,20 @@ router.post('/:id/delete', (req, res, next) => {
         });
 });
 
-router.get('/celebrities/:id/edit', (req, res, next) => {
+router.get('/:id/edit', (req, res, next) => {
+    console.log('hello', req.params.id);
     const celebId = req.params.id;
     Celebrity.findById(celebId)
         .then((celeb) => {
-            res.render('celebrities/edit', { celeb })
+            res.render('celebrities/edit.hbs', { celeb });
         })
         .catch(err => {
             next(err);
         });
 });
 
-router.get('/:id', (req, res, next) => {
-    console.log(req.params.id);
-    const celebId = req.params.id;
 
-    Celeb.findById(celebId)
-        .then(celeb => {
-            console.log(celeb);
-            res.render('celebrities/show', { celebDetails: celeb });
-        })
-        .catch(err => {
-            next(err);
-        });
-});
+
 
 
 module.exports = router;
