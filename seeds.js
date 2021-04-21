@@ -2,7 +2,9 @@
 require('dotenv/config');
 
 // ℹ️ Connects to the database
-require('./db');
+// this line would work as before, but to close the connection we need the export version
+// require('./db');
+const mongoose = require('./db');
 
 const Celebrity = require('./models/Celebrity');
 
@@ -28,7 +30,7 @@ Celebrity.insertMany(initialCelebritiesData)
   .then((insertedData) => {
     console.log(`Success! Added ${insertedData.length} to the database`);
     // closing generating error when done using require('./db');
-    // mongoose.connection.close();
+    mongoose.connection.close();
   })
   .catch((err) => {
     console.log(err);
