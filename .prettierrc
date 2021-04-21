@@ -5,9 +5,10 @@
   "singleQuote": true,
   "overrides": [
     {
-      "files": "*.hbs",
+      "files": ["*.hbs", "*.html"],
       "options": {
-        "singleQuote": false
+        "singleQuote": false,
+        "tabWidth": 4
       }
     }
   ]
