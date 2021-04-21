@@ -1,4 +1,5 @@
 const Celebrity = require('../models/celebrities');
+const Movie = require('../models/Movie');
 const router = require("express").Router();
 
 router.get('/celebrities', (req, res, next) => {
@@ -60,7 +61,7 @@ router.get('/celebrities/:id/edit', (req, res, next) => {
   })
 })
 
-router.post('/celebrity/:id/edit', (req, res, next) => {
+router.post('/celebrities/:id/edit', (req, res, next) => {
   const celebrityId = req.params.id;
   const {
     name,
@@ -73,8 +74,7 @@ router.post('/celebrity/:id/edit', (req, res, next) => {
     catchPhrase: catchPhrase
   }).then(c => {
     res.redirect('/celebrities')
-  })
-
+  }).catch(err => console.log(err))
 })
 
 module.exports = router;

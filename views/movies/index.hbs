@@ -1,0 +1,15 @@
+<h1>ALL MOVIES</h1>
+<div class="movieContainer">
+  {{#each movies}}
+  <div class="movieCard">
+    <h3>{{title}}</h3>
+    <h4>{{genre}}</h4>
+    <p><strong>Plot: </strong>{{plot}}</p>
+    <h3><strong>Cast: </strong></h3>
+    {{#each cast}}
+    <p>{{name}}</p>
+    {{/each}}
+    <a href="/movies/{{_id}}/edit">Edit Movie</a>
+  </div>
+  {{/each}}
+</div>
