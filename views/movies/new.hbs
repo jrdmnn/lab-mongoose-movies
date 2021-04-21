@@ -1,0 +1,21 @@
+<h2>Add New Movie</h2>
+
+  <form action="/movies/new" method="GET">
+    <label for="title">Title</label> 
+    <input id="title" type="text" name="title">
+    
+    <label for="genre">Genre</label> 
+    <input id="genre" type="text" name="genre">
+    
+    <label for="plot">Plot</label> 
+    <input id="plot" type="text" name="plot">
+
+    <label for="cast">Cast</label> 
+    <select id="cast" name="cast" size="3" multiple>
+    <option value="Giulia Baile">Giulia Baile</option>
+    <option value="Winter">Winter</option>
+    <option value="Natalie Dupont">Natalie Dupont</option>
+    </select>
+    
+    <button type="submit">Add Movie</button>
+  </form>
