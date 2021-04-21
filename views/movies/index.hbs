@@ -1,0 +1,9 @@
+<h1>a list of awesome and not so awesome movies</h1>
+
+{{#each movies}}
+<a href="/movies/{{_id}}">
+  <p>{{ title }}</p>
+</a>
+{{/each}}
+
+<a href="/movies/new">Add a new movie</a>
