@@ -1,0 +1,9 @@
+<h2>Celebrities</h2>
+{{#with celebrity}}
+<p>Name: {{name}}</p>
+<p>Occupation: {{occupation}}</p>
+<p>Catchphrase: {{catchPhrase}}</p>
+<a href="/celebrities"><button>Back</button></a>
+<a href="/celebrities/{{_id}}/edit"><button>Edit</button></a>
+<a href="/celebrities/delete/{{_id}}"><button>Delete</button></a>
+{{/with}}
