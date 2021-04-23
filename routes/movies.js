@@ -17,11 +17,12 @@ router.get('/movies/new', (req, res, next) => {
     })
 })
 
-router.get('movies/:id', (req, res, next) => {
+router.get('/movies/:id', (req, res, next) => {
   const filmId = req.params.id;
-  Movie.find(filmId).populate('cast')
+  console.log('this is the ID: ' + filmId);
+  Movie.findById(filmId).populate('cast')
     .then(movie => {
-      console.log('ITS WORKING THIS FAR')
+      console.log('ITS WORKING THIS FAR' + movie.cast)
       res.render('movies/show', {
         movieInfo: movie
       })
@@ -34,7 +35,6 @@ router.get('movies/:id', (req, res, next) => {
 router.get('/movies', (req, res, next) => {
   Movie.find()
     .then(movies => {
-      console.log('HERE IS THE CAST', movies)
       res.render('movies/index', {
         movieList: movies
       });
