@@ -10,9 +10,7 @@
   <input type="text" name="plot" id="plot" value="{{movie.plot}}">
 
   <select name="cast" multiple>
-    {{#each celebrites}}
-    {{{selector ../movie}}}
-    {{/each}}
+    {{{options}}}
   </select>
   <button type="submit">Save 💾</button>
 </form>

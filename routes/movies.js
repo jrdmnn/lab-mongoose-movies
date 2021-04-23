@@ -73,10 +73,6 @@ router.get('/movies/:id/edit', (req, res, next) => {
           })
           res.render('movies/edit', {
             movie,
-            celebrities
-          })
-          res.render('movies/edit', {
-            movie,
             options
           });
         })
