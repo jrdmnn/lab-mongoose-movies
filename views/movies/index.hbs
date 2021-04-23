@@ -1,0 +1,20 @@
+<h2>All movies</h2>
+
+<ul>
+  {{#each movies}}
+    <div>
+      <p>Title: {{title}}</p>
+      <p>Genre: {{genre}}</p>
+      <p>Plot: {{plot}}</p>
+      <ul>
+        {{#each cast}}
+          <li>{{name}}</li>
+        {{/each}}
+      </ul>
+
+      <a href="/movies/{{_id}}">
+        <button type="submit">Edit</button>
+      </a>
+    </div>
+  {{/each}}
+</ul>
