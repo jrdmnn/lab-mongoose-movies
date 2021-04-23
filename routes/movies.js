@@ -22,9 +22,9 @@ router.get('/movies/:id', (req, res, next) => {
   console.log('this is the ID: ' + filmId);
   Movie.findById(filmId).populate('cast')
     .then(movie => {
-      console.log('ITS WORKING THIS FAR' + movie.cast)
+      console.log('ITS WORKING THIS FAR' + movie.cast[0].name)
       res.render('movies/show', {
-        movieInfo: movie
+        movieInfo: movie, castInfo: movie.cast
       })
     })
     .catch(err=>{
