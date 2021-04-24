@@ -44,10 +44,14 @@ router.post('/movies', (req, res, next) => {
 
 router.get('/movies/edit/:id', (req, res, next) => {
   Movie.findById(req.params.id)
+  .populate('cast')
   .then(movie => {
-    console.log(movie)
-    res.render('movies/edit', { movieData: movie })
-  })
+    Celebrity.find()
+      .then(celebrities => {
+        console.log(celebrities)
+        res.render('movies/edit', { movieData: movie, celebrityData: celebrities})
+      })
+    })
   .catch(err => {
     next(err);
   })
@@ -55,11 +59,12 @@ router.get('/movies/edit/:id', (req, res, next) => {
 
 router.post('/movies/edit/:id', (req, res, next) => {
   const movieId = req.params.id;
-  const {title, genre, plot} = req.body;
+  const {title, genre, plot, cast} = req.body;
   Movie.findByIdAndUpdate(movieId, {
     title: title,
     genre: genre,
-    plot: plot
+    plot: plot,
+    cast: cast
   })
     .then(movie => {
       console.log(`${movie} has been updated succesfully`);
