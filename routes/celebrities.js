@@ -14,7 +14,7 @@ router.get('/celebrities', (req, res, next) => {
 
 router.get('/celebrities/new', (req, res, next) => {
   res.render('celebrities/new', {})
-});
+})
 
 router.post('/celebrities', (req, res, next) => {
   const { name, occupation, catchPhrase } = req.body;
@@ -25,10 +25,13 @@ router.post('/celebrities', (req, res, next) => {
   .catch(err => res.render('celebrities/new')) 
 })
 
-// router.post('/celebrities/:id/delete', (req, res, next) => {
-//   const celebId = req.params;
-//   Celebrity.findByIdAndRemove
-// })
+router.post('/celebrities/:id/delete', (req, res, next) => {
+  const celebId = req.params.id;
+  console.log(req.params);
+  Celebrity.findByIdAndRemove(celebId)
+  .then(() => res.redirect('/celebrities'))
+  .catch(err => {next(err);})  
+})
 
 router.get('/celebrities/:id', (req, res, next) =>{
   const celebId = req.params.id;
