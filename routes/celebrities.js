@@ -1,5 +1,6 @@
 
 const router = require("express").Router();
+const { Router } = require("express");
 const Celebrity = require("../models/Celebrity.model");
 
 router.get('/celebrities', (req, res, next) => {
@@ -27,10 +28,23 @@ router.post('/celebrities', (req, res, next) => {
 
 router.post('/celebrities/:id/delete', (req, res, next) => {
   const celebId = req.params.id;
-  console.log(req.params);
   Celebrity.findByIdAndRemove(celebId)
   .then(() => res.redirect('/celebrities'))
   .catch(err => {next(err);})  
+})
+
+router.post('celebrities/:id/edit', (req, res, next) => {
+  const celebId = req.params.id;
+  Celebrity.findById(celebId)
+  .then((celebToEdit) => {res.render('celebrities/edit', {celebrity})})
+  .catch(err => {next(err);}) 
+})
+
+router.post('/celebrities/:id', ( req, res, next) => {
+  const {name, occupation, catchPhrase} = req.body;
+  Celebrity.findByIdAndUpdate(req.params.id, {name, occupation, catchPhrase})
+  .then((updatedCeleb) => { redirect('/celebrities', {updatedCeleb})})
+  .catch(err => {next(err);})
 })
 
 router.get('/celebrities/:id', (req, res, next) =>{
@@ -43,6 +57,8 @@ router.get('/celebrities/:id', (req, res, next) =>{
       next(err);
     })
 })
+
+
 
 module.exports = router;
 //Q0. When creating a route. what is the minimal thing you have to do to get a console.log a routes GET request to work
