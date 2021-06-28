@@ -15,8 +15,11 @@ router.get("/celebrities", (req, res, next) => {
 		})
 });
 
-router.get("/celebrities/:id", (req, res, next) => {
+router.get("/celebrities/new", (req, res, next) => {
+  res.render('celebrities/new', { title: 'Add celebrity' });
+});
 
+router.get("/celebrities/:id", (req, res, next) => {
   Celebrity.findById(req.params.id)
 		.then(celebrity => {
 			console.log(celebrity)
@@ -25,6 +28,24 @@ router.get("/celebrities/:id", (req, res, next) => {
 		.catch(err => {
 			console.log(err)
 		})
+});
+
+router.post("/celebrities", (req, res, next) => {
+  const { name, occupation, catchPhrase } = req.body;
+ 
+  Celebrity.create({
+    name,
+    occupation,
+    catchPhrase
+  })
+	.then(celebrity => {
+    console.log(`Success! Added ${celebrity} to the database`);
+    res.redirect('/celebrities');
+	})
+	.catch(err => {
+		console.log(err);
+    res.render('celebrities/new', { title: 'Add celebrity' });
+	})
 });
 
 module.exports = router;
