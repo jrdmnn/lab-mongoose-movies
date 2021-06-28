@@ -8,4 +8,9 @@ a {
 h1 {
   color: 15px; }
 
+#celebrities {
+display: flex;
+justify-content: space-around;
+}
+
 /*# sourceMappingURL=style.css.map */
