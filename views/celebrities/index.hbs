@@ -1,0 +1,12 @@
+<h2>View the list of some of the highest paid celebrities</h2>
+
+{{#each celesInDB}}
+    <a href="/celebrities/{{_id}}">
+        <p>{{name}}</p>
+    </a>
+<form action="celebrities/{{_id}}/delete" method="POST">
+<button type="submit">Remove this person, sure?</button>
+
+{{/each}}
+
+<a href="/celebrities/new">Want to add someone?</a>
