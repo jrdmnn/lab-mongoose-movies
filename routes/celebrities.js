@@ -30,6 +30,17 @@ router.get("/celebrities/:id", (req, res, next) => {
 		})
 });
 
+router.get("/celebrities/:id/edit", (req, res, next) => {
+  Celebrity.findById(req.params.id)
+		.then(celebrity => {
+			console.log(celebrity)
+			res.render(`celebrities/edit`, { celebrity, title: 'Edit celebrity' });
+		})
+		.catch(err => {
+			console.log(err)
+		})
+});
+
 router.post("/celebrities", (req, res, next) => {
   const { name, occupation, catchPhrase } = req.body;
   Celebrity.create({
@@ -56,6 +67,24 @@ router.post("/celebrities/:id/delete", (req, res, next) => {
 		.catch(err => {
 			console.log(err)
 		})
+});
+
+router.post("/celebrities/:id", (req, res, next) => {
+  console.log(req.body)
+  const { name, occupation, catchPhrase } = req.body;
+  Celebrity.findByIdAndUpdate(req.params.id, {
+    name,
+    occupation,
+    catchPhrase
+  })
+	.then(celebrity => {
+    console.log(`Successully edited ${celebrity}`);
+    // res.redirect('/celebrities/:id');
+    res.redirect(`/celebrities/${celebrity._id}`);
+	})
+	.catch(err => {
+		console.log(err);
+	})
 });
 
 module.exports = router;

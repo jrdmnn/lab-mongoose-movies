@@ -7,6 +7,9 @@
     <p>{{name}}</p>
     <p>{{occupation}}</p>
     <p>{{catchPhrase}}</p>
+    <form action="/celebrities/{{_id}}/edit" method="GET">
+      <button>Edit celebrity</button>
+    </form>
   </div>
   {{/with}}
 </div>
