@@ -35,12 +35,10 @@ router.get('/celebrities/new', (req, res, next) => {
 });
 
 router.get('/celebrities/:id/edit', (req, res, next) => {
-	// get all the celebrities	
-  console.log(req.params.id)
+
 	Celebrity.findById(req.params.id)
 		.then(celebritiesFromDB => {
-			// render a view books
-			// console.log(booksFromDB)
+
 			res.render('celebrities/edit', { celebritiesEdit: celebritiesFromDB });
 		})
 		.catch(err => {
@@ -90,8 +88,8 @@ router.post('/celebrities/:id', (req, res, next) => {
     catchPhrase
   })
   
-    .then(() => {
-      res.redirect('celebrities')
+    .then((celebrity) => {
+      res.redirect(`/celebrities/${celebrity._id}`)
     })
     .catch(err => {
       console.log(err)
