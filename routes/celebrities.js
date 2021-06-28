@@ -32,7 +32,6 @@ router.get("/celebrities/:id", (req, res, next) => {
 
 router.post("/celebrities", (req, res, next) => {
   const { name, occupation, catchPhrase } = req.body;
- 
   Celebrity.create({
     name,
     occupation,
@@ -46,6 +45,17 @@ router.post("/celebrities", (req, res, next) => {
 		console.log(err);
     res.render('celebrities/new', { title: 'Add celebrity' });
 	})
+});
+
+router.post("/celebrities/:id/delete", (req, res, next) => {
+  Celebrity.findByIdAndDelete(req.params.id)
+		.then(celebrity => {
+			console.log('Celebrity deleted');
+			res.redirect('/celebrities');
+		})
+		.catch(err => {
+			console.log(err)
+		})
 });
 
 module.exports = router;
