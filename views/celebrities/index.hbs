@@ -4,7 +4,7 @@
 <div id="celebrities">
   {{#each celebritiesFromDB}}
   <div id="celebrity">
-    <p>{{name}}</p>
+    <a href="/celebrities/{{_id}}"><p>{{name}}</p></a>
     {{!-- <p>{{occupation}}</p>
     <p>{{catchPhrase}}</p> --}}
   </div>
