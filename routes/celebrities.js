@@ -1,53 +1,78 @@
 const router = require("express").Router();
 const Celebrity = require('../models/Celebrity');
 
-router.get('/celebrities', (req, res, next) => {
+router.get('/', (req, res, next) => {
 	// get all the celebrities	
 	Celebrity.find()
-		.then(celebritiesFromDB => {
+		.then(celebrities => {
 			// render a view celebrities
 			// console.log(celebritiesFromDB)
-			res.render('celebrities', { celebritiesList: celebritiesFromDB });
+			res.render('celebrities/index.hbs', { celebrities });
 		})
 		.catch(err => {
 			console.log(err)
 		})
 });
 
-router.get('/celebrities/new', (req, res, next) => {
-	res.render('celebrities/new');
+router.get('/new', (req, res, next) => {
+	res.render('celebrities/new.hbs');
 });
 
-router.post('/celebrities/new', (req, res, next) => {
-	const celebrityId = req.params.id;
+router.get('/:id', (req, res, next) => {
+  Celebrity.findById(req.params.id)
+    .then(celebrity => {
+      res.render('celebrities/show.hbs', { celebrity });
+    })
+    .catch(err => {
+      next(err);
+    });
+});
+
+router.post('/', (req, res, next) => {
 	const { name, occupation, catchPhrase } = req.body;
-	Celebrity.findById(celebrityId, {
+	Celebrity.create({
 		name,
 		occupation,
 		catchPhrase
 	})
 		.then(() => {
-			res.redirect("celebrities");
+			res.redirect("/celebrities");
 		})
 		.catch(err => {
 			console.log(err);
 		})
 });
 
+router.post('/:id', (req, res, next) => {
+  console.log(req.body);
+  const { celebrityname, occupation, catchPhrase } = req.body;
+  Celebrity.findByIdAndUpdate(req.params.id, { name: celebrityname, occupation: occupation, catchPhrase })
+    .then((celebrity) => {
+      res.redirect(`/celebrities/${celebrity._id}`);
+    })
+    .catch(err => {
+      next(err);
+    });
+})
 
-router.get('/celebrities/:id', (req, res, next) => {
-	console.log(req.params.id);
-	const celebrityId = req.params.id;
-	// get the book with the clicked id
-	Celebrity.create(celebrityId)
-		.then(celebritiesFromDB => {
-			console.log(celebritiesFromDB);
-			// render the details view
-			res.render('celebrities/show', { celebrtityDetails: celebritiesFromDB });
-		})
-		.catch(err => {
-			console.log(err);
-		})
+router.post('/:id/delete', (req, res, next) => {
+  Celebrity.findOneAndDelete({ _id: req.params.id })
+    .then(() => {
+      res.redirect('/celebrities');
+    })
+    .catch(err => {
+      next(err);
+    })
+});
+
+router.get('/:id/edit', (req, res, next) => {
+  Celebrity.findById(req.params.id)
+    .then(celebrity => {
+      res.render('celebrities/edit', { celebrity });
+    })
+    .catch(err => {
+      next(err);
+    });
 });
 
 
