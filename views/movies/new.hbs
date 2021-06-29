@@ -6,7 +6,16 @@
     <input type="text" name="title" placeholder="Title">
     <input type="text" name="genre" placeholder="Genre">
     <input type="text" name="plot" placeholder="Plot">
-    <input type="text" name="cast" placeholder="Cast">
+    <select name="cast" multiple>
+      {{#each celebrities}}
+        <option value="{{_id}}">{{name}}</option>
+      {{/each}}
+	  </select>
+    {{!-- <select name="cast">
+      {{#each celebrities}}
+        <option value="{{_id}}">{{name}}</option>
+      {{/each}}
+	  </select> --}}
     <button id="btn-submit">Add movie</button>
   </form>
 </div>

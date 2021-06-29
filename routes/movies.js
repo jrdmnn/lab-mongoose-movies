@@ -9,7 +9,7 @@ router.get("/movies", (req, res, next) => {
   Movie.find()
     .populate('cast')
 		.then(moviesFromDB => {
-			console.log(moviesFromDB);
+			// console.log(moviesFromDB);
 			res.render('movies/index', { moviesFromDB, title: 'Movies' });
 		})
 		.catch(err => {
@@ -21,7 +21,7 @@ router.get("/movies/new", (req, res, next) => {
 // we need to get all the celebrities and pass them into the view
 Celebrity.find()
 .then(celebritiesFromDB => {
-  console.log(celebritiesFromDB);
+  // console.log(celebritiesFromDB);
   res.render('movies/new', { celebrities: celebritiesFromDB, title: 'Add movie' });
 })
 .catch(err => {
