@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Celebrity = require("./models/Celebrity");
+const Movie = require("./models/Movie");
 
 mongoose.connect('mongodb://localhost/lab-mongoose-movies', {
 	useNewUrlParser: true,
@@ -24,6 +25,21 @@ const celebrities = [
 	}
 ]
 
+const movies = [
+	{
+		title: "",
+		genre: "",
+		plot: "",
+		cast: ""
+	}
+]
+
+Movie.insertMany(movies).then(movies => {
+    console.log(`Success! Added ${movies.length} books to the database`)
+})
+.catch(err => {
+    console.log(err);
+})
 
 Celebrity.insertMany(celebrities)
 .then(celebrities => {

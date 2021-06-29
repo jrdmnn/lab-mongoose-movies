@@ -65,4 +65,36 @@ router.post('/celebrities/:id/delete', (req, res, next) => {
 		})
 });
 
+// this displays the edit form
+router.get('/celebrities/:id/edit', (req, res, next) => {
+	// retrieve the book that should be edited	
+	const celebId = req.params.id;
+	Celebrity.findById(celebId)
+		.then(celebFromDB => {
+			console.log(celebFromDB);
+			// render a form with the book details
+			res.render('celebrities/edit', { celebFromDB });
+		})
+		.catch(err => {
+			console.log(err);
+		})
+});
+
+router.post('/celebrities/:id', (req, res, next) => {
+	const celebId = req.params.id;
+	const { name, occupation, catchPhrase} = req.body;
+	Celebrity.findByIdAndUpdate(celebId, {
+		name,
+		occupation,
+		catchPhrase
+	})
+		.then(() => {
+			res.redirect(`/celebrities`);
+		})
+		.catch(err => {
+			console.log(err);
+		})
+});
+
+
 module.exports = router;
