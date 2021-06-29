@@ -33,9 +33,9 @@ const celebs = [
 ]
 
 Celebrity.insertMany(celebs)
-  .then( () =>{
+  .then( celebs =>{
     console.log('success');
-    mongoose.connection.close
+    mongoose.connection.close();
   })
   .catch(err => {
     console.log(err);
