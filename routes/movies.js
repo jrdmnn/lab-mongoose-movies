@@ -3,6 +3,8 @@ const router = require("express").Router();
 const Movie = require('../models/Movie');
 const Celebrity = require('../models/Celebrity');
 
+let celebs;
+
 /* GET home page */
 router.get("/movies", (req, res, next) => {
 
@@ -21,7 +23,7 @@ router.get("/movies/new", (req, res, next) => {
 // we need to get all the celebrities and pass them into the view
 Celebrity.find()
 .then(celebritiesFromDB => {
-  // console.log(celebritiesFromDB);
+  // console.log('type of celebrities from db: ' + typeof celebritiesFromDB);
   res.render('movies/new', { celebrities: celebritiesFromDB, title: 'Add movie' });
 })
 .catch(err => {
@@ -62,18 +64,27 @@ router.post("/movies", (req, res, next) => {
 /// new code starting here:
 
 router.get("/movies/:id/edit", (req, res, next) => {
-  let celebrities = Celebrity.find();
-  console.log(celebrities);
-  
+  Celebrity.find()
+  .then(celebrities => {
+    celebs = celebrities;
+    // console.log('celebs after being populated = ' + celebs);
+    res.redirect(`/movies/${req.params.id}/edit/celebrities`);
+  })
+  .catch(err => {
+    console.log(err)
+  })
+});
+
+router.get("/movies/:id/edit/celebrities", (req, res, next) => {
+  console.log('celebs: ' + celebs)
   Movie.findById(req.params.id)
-   // .populate('cast')
-		.then(movie => {
-			// console.log(movie)
-			res.render(`movies/edit`, { movie, celebrities, title: 'Edit movie' });
-		})
-		.catch(err => {
-			console.log(err)
-		})
+  .then(movie => {
+    // console.log(movie)
+    res.render('movies/edit', { movie, celebs, title: 'Edit movie' });
+  })
+  .catch(err => {
+    console.log(err)
+  })
 });
 
 router.post("/movies/:id/delete", (req, res, next) => {
