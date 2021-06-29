@@ -1,0 +1,14 @@
+<h2>{{title}}</h1>
+
+<div id="celebrities">
+  {{#with celebrity}}
+  <div id="celebrity">
+    <p><span id="celebrity-name">{{name}}</span></p>
+    <p>{{occupation}}</p>
+    <p>{{catchPhrase}}</p>
+    <form action="/celebrities/{{_id}}/edit" method="GET">
+      <button>Edit celebrity</button>
+    </form>
+  </div>
+  {{/with}}
+</div>

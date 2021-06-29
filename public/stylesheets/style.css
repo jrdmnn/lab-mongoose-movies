@@ -1,11 +1,57 @@
 body {
-  padding: 50px;
+  margin: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+
+#body {
+  padding: 50px;
+}
 
 a {
   color: #00b7ff; }
 
 h1 {
   color: 15px; }
+
+nav {
+    display: flex;
+    flex-direction: row;
+    background-color: #2081c3;
+    border-bottom: 2px groove #bfbfbf;
+}
+
+nav div {
+    margin-left: 20px;
+    padding: 20px 0 15px 0;
+}
+
+nav a {
+    padding: 10px;
+    text-decoration: none;
+    color: #f7f9f9;
+    margin: 0 0 0 20px;
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
+#suggestion {
+  color: red;
+  font-weight: bold;
+  margin: 40px 0 0 0;
+}
+
+#celebrities, #movies {
+  display: flex;
+  justify-content: space-around;
+}
+
+#movie-name, #celebrity-name {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: red;
+}
+
+#movie span {
+  font-weight: bold;
+}
 
 /*# sourceMappingURL=style.css.map */

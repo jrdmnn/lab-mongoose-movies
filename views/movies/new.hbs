@@ -1,0 +1,21 @@
+<h2>{{title}}</h1>
+
+<div id="movies">
+  <form action="/movies" method="POST">
+    <label for="title">Title: </label><input id="title" type="text" name="title" placeholder="Title">
+    <label for="genre">Genre: </label><input id="genre" type="text" name="genre" placeholder="Genre">
+    <label for="plot">Plot: </label><input id="plot" type="text" name="plot" placeholder="Plot">
+    <label for="cast">Cast: </label>
+    <select id="cast" name="cast" multiple>
+      {{#each celebrities}}
+        <option value="{{_id}}">{{name}}</option>
+      {{/each}}
+	  </select>
+    {{!-- <select name="cast">
+      {{#each celebrities}}
+        <option value="{{_id}}">{{name}}</option>
+      {{/each}}
+	  </select> --}}
+    <button id="btn-submit">Add movie</button>
+  </form>
+</div>

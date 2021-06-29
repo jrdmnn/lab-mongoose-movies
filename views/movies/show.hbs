@@ -1,0 +1,18 @@
+<h2>{{title}}</h1>
+
+<div id="movies">
+  {{#with movie}}
+  <div id="movie">
+    <p><span id="movie-name">{{title}}</span></p>
+    <p><span>Genre:</span> {{genre}}</p>
+    <p><span>Plot:</span> {{plot}}</p>
+    <h3>Cast: </h3>
+	  {{#each cast}}
+      <p>{{name}}</p>
+	  {{/each}}
+    <form action="/movies/{{_id}}/edit" method="GET">
+      <button>Edit movie</button>
+    </form>
+  </div>
+  {{/with}}
+</div>
