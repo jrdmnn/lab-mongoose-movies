@@ -30,6 +30,18 @@ router.get('/movies/new', (req, res, next) => {
 		})
   });
 
+//	router.get("/movies/:id", (req, res, next) => {
+//		Movie.findById(req.params.id)
+//			.populate('cast')
+//			.then(movieInDb => {
+				// console.log(movie)
+//				res.render(`movies/show`, { movieInDb });
+//			})
+//			.catch(err => {
+//				console.log(err)
+//			})
+//	});
+
 router.post('/movies', (req, res, next) => {
 	// console.log(req.body);
 	const { title, genre, plot, cast } = req.body;
@@ -38,7 +50,7 @@ router.post('/movies', (req, res, next) => {
 		title: title,
 		genre: genre,
 		plot: plot,
-        cast: cast
+    cast: cast
 	})
 		.then(createdMovie => {
 			console.log(`This movie has just been added: ${createdMovie}`);

@@ -1,0 +1,12 @@
+<h2>You are interested to know more about {{celesInDB.name}}?</h2>
+{{#with movieInDb}}
+        <p>Title: {{title}}</p>
+        <p>Genre: {{genre}}</p>
+        <p>Plot: {{plot}}</p>
+        <p>Cast: </p>
+        {{#each cast}}
+        <p>{{name}}</p>
+        {{/each}}
+{{/with}}
+
+        <a href="/movies/{{movieInDb._id}}/edit">Something not correct? Edit</a>
