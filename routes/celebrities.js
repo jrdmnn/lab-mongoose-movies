@@ -6,7 +6,7 @@ const Celebrity = require('../models/celebrity');
 router.get("/", (req, res, next) => {
   Celebrity.find()
     .then(celebsFromDB => {
-      res.render("celebrities/index", { celebList: celebsFromDB });
+      res.render("celebrities/index.hbs", { celebList: celebsFromDB });
       console.log(celebList)
     })
     .catch(err => {
