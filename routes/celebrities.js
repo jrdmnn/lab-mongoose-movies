@@ -1,6 +1,7 @@
 const router = require("express").Router();
 // ../ to go up one folder
 const Celebrity = require('../models/celebrity');
+const Movie = require('../models/Movie');
 
 router.post('/celebrities', (req, res, next) => {
   const { name, occupation, catchPhrase} = req.body;
@@ -20,7 +21,7 @@ router.get('/celebrities', (req, res, next) => {
 	Celebrity.find()
 		.then(celebritiesFromDB => {
 			// render a view books
-			// console.log(booksFromDB)
+			console.log(booksFromDB)
 			res.render('celebrities/index', { celebritiesList: celebritiesFromDB });
 		})
 		.catch(err => {
