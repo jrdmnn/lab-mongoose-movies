@@ -2,7 +2,7 @@
 <p>Welcome to {{title}}</p>
 
 <div id="movies">
-  {{#each moviesFromDB}}
+  {{#with movie}}
   <div id="movie">
     <a href="/movies/{{_id}}"><p>{{title}}</p></a>
     <p>{{genre}}</p>
@@ -11,9 +11,9 @@
 	  {{#each cast}}
       <p>{{name}}</p>
 	  {{/each}}
-    <form action="/movies/{{_id}}/delete" method="POST">
-      <button>Delete movie</button>
+    <form action="/movies/{{_id}}/edit" method="GET">
+      <button>Edit movie</button>
     </form>
   </div>
-  {{/each}}
+  {{/with}}
 </div>
