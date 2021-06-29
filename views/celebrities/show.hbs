@@ -1,10 +1,9 @@
 <h2>{{title}}</h1>
-<p>Welcome to {{title}}</p>
 
 <div id="celebrities">
   {{#with celebrity}}
   <div id="celebrity">
-    <p>{{name}}</p>
+    <p><span id="celebrity-name">{{name}}</span></p>
     <p>{{occupation}}</p>
     <p>{{catchPhrase}}</p>
     <form action="/celebrities/{{_id}}/edit" method="GET">

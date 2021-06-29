@@ -1,16 +1,11 @@
 <h2>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<h3>Click on the movie title for more details</h3>
 
 <div id="movies">
   {{#each moviesFromDB}}
   <div id="movie">
     <a href="/movies/{{_id}}"><p>{{title}}</p></a>
     <p>{{genre}}</p>
-    <p>{{plot}}</p>
-    <h3>Cast: </h3>
-	  {{#each cast}}
-      <p>{{name}}</p>
-	  {{/each}}
     <form action="/movies/{{_id}}/delete" method="POST">
       <button>Delete movie</button>
     </form>

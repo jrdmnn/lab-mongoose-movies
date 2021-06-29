@@ -11,7 +11,7 @@ router.get("/movies", (req, res, next) => {
   Movie.find()
     .populate('cast')
 		.then(moviesFromDB => {
-			// console.log(moviesFromDB);
+			//console.log(moviesFromDB);
 			res.render('movies/index', { moviesFromDB, title: 'Movies' });
 		})
 		.catch(err => {
@@ -23,7 +23,6 @@ router.get("/movies/new", (req, res, next) => {
 // we need to get all the celebrities and pass them into the view
 Celebrity.find()
 .then(celebritiesFromDB => {
-  // console.log('type of celebrities from db: ' + typeof celebritiesFromDB);
   res.render('movies/new', { celebrities: celebritiesFromDB, title: 'Add movie' });
 })
 .catch(err => {
@@ -67,7 +66,7 @@ router.get("/movies/:id/edit", (req, res, next) => {
   Celebrity.find()
   .then(celebrities => {
     celebs = celebrities;
-    // console.log('celebs after being populated = ' + celebs);
+    // console.log('celebs: ' + celebs);
     res.redirect(`/movies/${req.params.id}/edit/celebrities`);
   })
   .catch(err => {
@@ -76,11 +75,24 @@ router.get("/movies/:id/edit", (req, res, next) => {
 });
 
 router.get("/movies/:id/edit/celebrities", (req, res, next) => {
-  console.log('celebs: ' + celebs)
   Movie.findById(req.params.id)
   .then(movie => {
-    // console.log(movie)
-    res.render('movies/edit', { movie, celebs, title: 'Edit movie' });
+    let celebsInMovie = [];
+    let celebsNotInMovie = [];
+    for (let celeb of celebs) {
+      // console.log('this is a celeb: ' + celeb)
+      // console.log('this is the movie cast: ' + movie.cast)
+      if (movie.cast.includes(celeb._id)) {
+        // console.log(`${celeb.name} IS in this movie`);
+        celebsInMovie.push(celeb);
+      }
+      else {
+        // console.log(`${celeb.name} is NOT in this movie`);
+        celebsNotInMovie.push(celeb);
+      }
+    }
+    // console.log('celebrities in this movie: ' + celebsInMovie);
+    res.render('movies/edit', { movie, celebsInMovie, celebsNotInMovie, title: 'Edit movie' });
   })
   .catch(err => {
     console.log(err)
@@ -109,7 +121,6 @@ router.post("/movies/:id", (req, res, next) => {
   })
 	.then(movie => {
     console.log(`Successully edited ${movie}`);
-    // res.redirect('/celebrities/:id');
     res.redirect(`/movies/${movie._id}`);
 	})
 	.catch(err => {

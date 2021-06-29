@@ -1,12 +1,11 @@
 <h2>{{title}}</h1>
-<p>Welcome to {{title}}</p>
 
 <div id="movies">
   {{#with movie}}
   <div id="movie">
-    <a href="/movies/{{_id}}"><p>{{title}}</p></a>
-    <p>{{genre}}</p>
-    <p>{{plot}}</p>
+    <p><span id="movie-name">{{title}}</span></p>
+    <p><span>Genre:</span> {{genre}}</p>
+    <p><span>Plot:</span> {{plot}}</p>
     <h3>Cast: </h3>
 	  {{#each cast}}
       <p>{{name}}</p>

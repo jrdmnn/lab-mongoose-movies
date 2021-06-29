@@ -1,12 +1,12 @@
 <h2>{{title}}</h1>
-<p>Welcome to {{title}}</p>
 
 <div id="movies">
   <form action="/movies" method="POST">
-    <input type="text" name="title" placeholder="Title">
-    <input type="text" name="genre" placeholder="Genre">
-    <input type="text" name="plot" placeholder="Plot">
-    <select name="cast" multiple>
+    <label for="title">Title: </label><input id="title" type="text" name="title" placeholder="Title">
+    <label for="genre">Genre: </label><input id="genre" type="text" name="genre" placeholder="Genre">
+    <label for="plot">Plot: </label><input id="plot" type="text" name="plot" placeholder="Plot">
+    <label for="cast">Cast: </label>
+    <select id="cast" name="cast" multiple>
       {{#each celebrities}}
         <option value="{{_id}}">{{name}}</option>
       {{/each}}

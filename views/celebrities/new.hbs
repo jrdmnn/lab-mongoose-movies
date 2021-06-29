@@ -1,11 +1,10 @@
 <h2>{{title}}</h1>
-<p>Welcome to {{title}}</p>
 
 <div id="celebrities">
   <form action="/celebrities" method="POST">
-    <input type="text" name="name" placeholder="Name">
-    <input type="text" name="occupation" placeholder="Occupation">
-    <input type="text" name="catchPhrase" placeholder="Catchphrase">
+    <label for="name">Name: </label><input id="name" type="text" name="name" placeholder="Name">
+    <label for="occupation">Occupation: </label><input id="occupation" type="text" name="occupation" placeholder="Occupation">
+    <label for="catchPhrase">Catch phrase: </label><input id="catchPhrase" type="text" name="catchPhrase" placeholder="Catchphrase">
     <button id="btn-submit">Add celebrity</button>
   </form>
 </div>

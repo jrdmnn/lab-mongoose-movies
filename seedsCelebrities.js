@@ -33,6 +33,11 @@ const celebrities = [
 		name: "Arnold Schwarzenegger",
     occupation: "actor, politician, bodybuilder",
 		catchPhrase: "Hasta la vista, baby!"
+  },
+  {
+		name: "Christopher Lloyd",
+    occupation: "actor",
+		catchPhrase: "Where we're going, we don't need roads"
   }
 ]
 
