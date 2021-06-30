@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const Celebrity = require("../models/Celebrity");
 const Movie = require('../models/Movie');
 
 router.get('/', (req, res, next) => {
@@ -6,7 +7,15 @@ router.get('/', (req, res, next) => {
 });
 
 router.get('/new', (req, res, next) => {
-	res.render('movies/new');
+	Celebrity.find()
+  .then(celebrityFromDb => {
+    res.render('movies/new', {celebrities: celebrityFromDb});
+
+  })
+  .catch(err => {
+    console.log(err)
+  })
+  
 });
 
 router.post('/', (req, res, next) => {
@@ -19,9 +28,6 @@ router.post('/', (req, res, next) => {
   })
   res.redirect('movies')
 })
-
-
-
 
 
 
