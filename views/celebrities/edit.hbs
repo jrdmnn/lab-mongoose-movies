@@ -1,0 +1,15 @@
+<h2>Something incorrect? Plz!</h2>
+{{#with celebFromDB}}
+<form action="/celebrities/{{_id}}" method="POST">
+	<label for="name">name: </label>
+	<input type="text" id="name" name="name" value="{{name}}">
+
+	<label for="occupation">occupation: </label>
+	<input type="text" id="occupation" name="occupation" value="{{occupation}}">
+
+	<label for="catchPhrase">catchPhrase: </label>
+	<input type="text" id="catchPhrase" name="catchPhrase" value="{{catchPhrase}}">
+
+	<button type="submit">Edit info :)</button>
+</form>
+{{/with}}

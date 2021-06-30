@@ -1,0 +1,25 @@
+<h2>Something incorrect? Plz!</h2>
+{{!--#with moviesInDB--}}
+<form action="/movies/{{moviesInDB._id}}" method="POST">
+	<label for="title">title: </label>
+	<input type="text" id="title" name="title" value="{{moviesInDB.title}}">
+
+	<label for="genre">genre: </label>
+	<input type="text" id="genre" name="genre" value="{{moviesInDB.genre}}">
+
+	<label for="plot">plot: </label>
+	<input type="text" id="plot" name="plot" value="{{moviesInDB.plot}}">
+
+    <label for="cast">cast: </label>
+	<!--input type="text" id="cast" name="cast" value="{{cast}}"-->
+
+	<select name="cast" multiple>
+    {{!--#each celebrities}}
+    {{{selector ../movie}}}
+    {{/each--}}
+		{{{ options }}}
+  </select>
+
+	<button type="submit">Edit info :)</button>
+</form>
+{{!--/with--}}

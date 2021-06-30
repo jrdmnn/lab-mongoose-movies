@@ -1,0 +1,8 @@
+<h2>You are interested to know more about {{celesInDB.name}}?</h2>
+{{#each celesInDB}}
+        <p>{{name}}</p>
+        <p>{{occupation}}</p>
+        <p>{{catchPhrase}}</p>
+{{/each}}
+
+        <a href="/celebrities/{{celesInDB._id}}/edit">Something not correct? Edit</a>

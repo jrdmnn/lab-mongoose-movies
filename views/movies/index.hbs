@@ -1,0 +1,19 @@
+<h2>What movies did these celebs star in?</h2>
+
+{{#each moviesInDB}}
+    <!--a href="/movies/{{_id}}">
+        
+    </a-->
+        <p>{{title}}</p>
+        <p>{{genre}}</p>
+        <p>{{plot}}</p>
+        <a href="/movies/{{_id}}/edit">Something not correct? Edit</a>
+
+<!--ul>
+    <li></li>
+</ul-->
+
+
+{{/each}}
+
+<a href="/movies/new">Want to add a movie?</a>

@@ -27,7 +27,12 @@ app.locals.title = `${capitalized(projectName)}- Generated with IronGenerator`;
 // 👇 Start handling routes here
 const index = require("./routes/index");
 app.use("/", index);
-
+// this requires all the celeb routes
+const celebrities = require("./routes/celebrities");
+app.use("/", celebrities);
+// this requires all the movie routes
+const movies = require("./routes/movies");
+app.use("/", movies);
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
 
