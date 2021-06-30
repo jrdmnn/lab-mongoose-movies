@@ -14,6 +14,15 @@ router.get("/", (req, res, next) => {
     })
 });
 
+router.get('movies/new', (req, res, next) => {
+  Celebrity.find()
+    .then(celebsFromDB => {
+      res.render('movies/new,hbs', {celebrities: celebsFromDB});
+    })
+    .catch(err => {
+      console.log(err)
+    })
+})
 router.get("/new", (req, res, next) => {
   res.render('celebrities/new.hbs');
 });
