@@ -1,0 +1,22 @@
+<h2>Movies 🤩</h2>
+
+{{#each movielist}}
+<p>{{title}}</p>
+<p>{{genre}}</p>
+<ul>
+  {{#each cast}}
+    <li>{{name}}</li>
+  {{/each}}
+</ul>
+<a href="movies/{{id}}/edit">Edit movie</a>
+{{/each}}
+
+
+
+
+{{!-- <a href="/celebrities/{{id}}">See details</a>
+<a href="/celebrities/{{id}}/delete">delete</a>
+{{/each}} --}}
+{{!-- <h2>Add new:</h2>
+<a href="/celebrities/add">Add new!</a> --}}
+

@@ -16,28 +16,11 @@ router.get('/celebrities/index', (req, res, next) => {
 		})
 });
 
-
-
-
-
 router.get('/celebrities/add', (req, res, next) => {
 	res.render('celebrities/new');
 });
 
-router.get('/celebrities/:id', (req, res, next) => {
-	// get all the books	
-	console.log("party")
-  const celebrityID = req.params.id;
-  Celebrity.findById(celebrityID)
-		.then(celebrityFromDB => {
-      console.log(celebrityFromDB)
-			res.render('celebrities/show', { celebrityDetails: celebrityFromDB });
-		})
-		.catch(err => {
-			console.log(err)
-		})
 
-	});
 
 
 	router.post('/celebrities', (req, res, next) => {
@@ -96,6 +79,20 @@ router.get('/celebrities/:id/delete', (req, res, next) => {
 		})
 });
 
+router.get('/celebrities/:id', (req, res, next) => {
+	// get all the books	
+	console.log("party")
+  const celebrityID = req.params.id;
+  Celebrity.findById(celebrityID)
+		.then(celebrityFromDB => {
+      console.log(celebrityFromDB)
+			res.render('celebrities/show', { celebrityDetails: celebrityFromDB });
+		})
+		.catch(err => {
+			console.log(err)
+		})
+
+	});
 
 
 

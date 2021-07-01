@@ -2,6 +2,8 @@ const mongoose = require('mongoose');
 
 const Celebrity = require('./models/Celebrity');
 
+const Movies = require('/models/Movies')
+
 mongoose.connect('mongodb://localhost/library', {
 	useNewUrlParser: true,
 	useUnifiedTopology: true
@@ -21,6 +23,7 @@ const celebrities = [
   catchPhrase:"I had dinner with Obama once, and he just seemed very firm about the change, and that’s, like, his motto",
 }
 ]
+
 
 Celebrity.insertMany(celebrities)
   .then(celebrities => {
