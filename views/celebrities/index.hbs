@@ -1,0 +1,12 @@
+<h2>Celebrities 🤩</h2>
+
+{{#each celebritiesList}}
+<p>{{name}}</p>
+<p>{{catchPhrase}}</p>
+<a href="/celebrities/{{id}}">See details</a>
+<a href="/celebrities/{{id}}/delete">delete</a>
+{{/each}}
+
+<h2>Add new:</h2>
+<a href="/celebrities/add">Add new!</a>
+
