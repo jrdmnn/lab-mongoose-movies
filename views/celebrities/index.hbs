@@ -1,4 +1,6 @@
+<h2>{{title}}</h2>
 {{#each celebrities}}
-<a>{{name}}</a>
+<a>{{this.name}}</a>
+<a href="/celebrities/{{this._id}}">See Details</a>
 
 {{/each}}
