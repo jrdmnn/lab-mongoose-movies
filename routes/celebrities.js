@@ -16,17 +16,11 @@ router.get('/celebrities', (req, res, next) => {
   .catch(err => {
     console.log(err)
   })
-})
+});
 
-
-// router.get('celebrities/new', (req, res, next) => {
-//   .then(allCelebrities => {
-//     res.render('celebrities/new', {celebrities: allCelebrities});
-//   }
-//   .catch(err => {
-//     console.log(err)
-//   })
-// })
+router.get('celebrities/new', (req, res, next) => {
+  res.render('celebrities/new.hbs');
+});
 
 router.get('celebrities/:id', (req, res, next) => {
   console.log(req.params.id);
