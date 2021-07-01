@@ -18,11 +18,11 @@ router.get('/celebrities', (req, res, next) => {
   })
 });
 
-router.get('celebrities/new', (req, res, next) => {
+router.get('/celebrities/new', (req, res, next) => {
   res.render('celebrities/new.hbs');
 });
 
-router.get('celebrities/:id', (req, res, next) => {
+router.get('/celebrities/:id', (req, res, next) => {
   console.log(req.params.id);
   Celebrity.findById(req.params.id)
     .then(allCelebrities => {
