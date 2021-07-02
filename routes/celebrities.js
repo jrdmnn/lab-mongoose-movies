@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { findById } = require("../models/Celebrity");
+const { findById, findByIdAndRemove } = require("../models/Celebrity");
 // ../ to go up one folder
 const Celebrity = require('../models/Celebrity');
 
@@ -45,6 +45,14 @@ router.get('/celebrities/:id', (req, res, next) => {
     });
 });
 
-
+router.post('/celebrities/:id/delete', (req, res, next) => {
+  Celebrity.findByIdAndRemove(req.params.id)
+  .then(() => {
+    res.redirect('/celebrities')
+  })
+  .catch(err => {
+    next(err);
+  })
+})
 
 module.exports = router;
