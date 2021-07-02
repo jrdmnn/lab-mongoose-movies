@@ -34,16 +34,40 @@ router.get('/celebrities/new', (req, res, next) => {
   res.render('celebrities/new.hbs');
 });
 
+
+router.post('/celebrities/:id/delete', (req, res, next) => {
+  Celebrity.findByIdAndRemove(req.params.id)
+  .then(() => {
+    res.redirect('/celebrities')
+  })
+  .catch(err => {
+    next(err);
+  })
+});
+
 router.get('/celebrities/:id', (req, res, next) => {
   console.log(req.params.id);
   Celebrity.findById(req.params.id)
-    .then(allCelebrities => {
-      res.render('celebrities/show.hbs', { allCelebrities });
+    .then(celebrity => {
+      res.render('celebrities/show.hbs', { celebrity });
     })
     .catch(err => {
       next(err);
     });
 });
+
+router.post('/celebrities/:id', (req, res, next) => {
+  console.log(req.body);
+  const { celebrityname, occupation, catchPhrase } = req.body;
+  Celebrity.findByIdAndUpdate(req.params.id, { name: celebrityname, occupation: occupation, catchPhrase })
+    .then(() => {
+      res.redirect('/celebrities');
+    })
+    .catch(err => {
+      next(err);
+    });
+})
+
 
 router.post('/celebrities/:id/delete', (req, res, next) => {
   Celebrity.findByIdAndRemove(req.params.id)
@@ -54,5 +78,38 @@ router.post('/celebrities/:id/delete', (req, res, next) => {
     next(err);
   })
 })
+
+
+router.post('/celebrities/:id/delete', (req, res, next) => {
+  Celebrity.findByIdAndRemove(req.params.id)
+  .then(() => {
+    res.redirect('/celebrities')
+  })
+  .catch(err => {
+    next(err);
+  })
+})
+
+router.post('/celebrities/:id/delete', (req, res, next) => {
+  Celebrity.findByIdAndRemove(req.params.id)
+  .then(() => {
+    res.redirect('/celebrities')
+  })
+  .catch(err => {
+    next(err);
+  })
+})
+
+
+
+router.get('/celebrities/:id/edit', (req, res, next) => {
+  Celebrity.findById(req.params.id)
+  .then(celebrity => {
+    res.render('/celebrities/edit', {celebrity});
+  })
+  .catch(err => {
+    next(err);
+  })
+});
 
 module.exports = router;
