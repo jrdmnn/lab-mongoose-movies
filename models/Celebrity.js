@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+
 const celebritySchema = new Schema({
   name: String,
   occupation: String,
@@ -8,4 +9,5 @@ const celebritySchema = new Schema({
 
 // The .model() function makes a copy of schema
 const Celebrity = mongoose.model('Celebrity', celebritySchema)
+
 module.exports = Celebrity;

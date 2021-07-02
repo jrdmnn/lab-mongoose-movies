@@ -5,6 +5,7 @@ const Celebrity = require('../models/Celebrity');
 
 router.get('/celebrities', (req, res, next) => {
   // display all celebrities which are retrieved from MongoDB
+  const {name, occupation, catchphrase} = req.body;
   Celebrity.find()
   .then(allCelebrities => {
     // do I need to declare a const here?
@@ -17,6 +18,17 @@ router.get('/celebrities', (req, res, next) => {
     console.log(err)
   })
 });
+
+router.post('/celebrities', (req, res, next) => {
+  // display all celebrities which are retrieved from MongoDB
+  const {name, occupation, catchphrase} = req.body;
+  Celebrity.create({ name, occupation, catchphrase})
+  .then(() => {
+    res.redirect('/celebrities')
+  })
+  .catch(err => {
+    res.redirect('/celebrities/new')}) 
+})
 
 router.get('/celebrities/new', (req, res, next) => {
   res.render('celebrities/new.hbs');
