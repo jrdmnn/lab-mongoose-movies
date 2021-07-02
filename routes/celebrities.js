@@ -3,7 +3,8 @@ const router = require("express").Router();
 const Celebrity = require('../models/Celebrity');
 
 router.get('/celebrities', (req, res, next) => {
-	// get all the books	
+	console.log("we are in celebrities route");
+  // get all the books	
 	Celebrity.find()
 		.then(celebritiesFromDB => {
 			// render a view books
